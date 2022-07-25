@@ -3733,6 +3733,7 @@ GameObject:
   - component: {fileID: 9135883820011843816}
   - component: {fileID: 9135883820011843798}
   - component: {fileID: 557015419}
+  - component: {fileID: 26381598}
   m_Layer: 0
   m_Name: mixamorig:Hips
   m_TagString: Untagged
@@ -3803,7 +3804,7 @@ ConfigurableJoint:
   m_ConnectedAnchor: {x: 0.000000058728524, y: 0.77788275, z: -7.1054274e-15}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
-  m_XMotion: 2
+  m_XMotion: 0
   m_YMotion: 2
   m_ZMotion: 2
   m_AngularXMotion: 2
@@ -3896,10 +3897,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57a9bdcc1b994b008264eb37ed0c2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 8
+  _speed: 3
   _input: {fileID: 0}
-  _enemy: {fileID: 0}
-  _pelvisJoint: {fileID: 9135883820011843798}
+  _animator: {fileID: 9135883821240730559}
+--- !u!114 &26381598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199978991459998331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b42c08c399fc41b9b455667ac32a8b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _to: {fileID: 0}
 --- !u!1 &8216892561198053664
 GameObject:
   m_ObjectHideFlags: 0
