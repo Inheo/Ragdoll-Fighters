@@ -3940,6 +3940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackReload: 1
+  _attackDistance: 2
   _enemy: {fileID: 0}
 --- !u!1 &8216892561198053664
 GameObject:
@@ -4500,6 +4501,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2377732164de491883667abcf754293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1843264600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8216892560032399072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4aa7a719df742139423ac2928ea2e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attack: {fileID: 6903163285629992302}
 --- !u!4 &8737991061327553626 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7034ddf67893a4e30bfc091ea17c6b4d, type: 3}
