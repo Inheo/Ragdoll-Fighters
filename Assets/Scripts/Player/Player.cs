@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerAttack))]
-public class Player : MonoBehaviour
+public class Player : Unit
 {
     [SerializeField] private Animator _animator;
 
