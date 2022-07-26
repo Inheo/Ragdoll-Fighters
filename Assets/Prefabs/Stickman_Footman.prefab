@@ -3734,6 +3734,8 @@ GameObject:
   - component: {fileID: 9135883820011843798}
   - component: {fileID: 557015419}
   - component: {fileID: 26381598}
+  - component: {fileID: 2652497842672745488}
+  - component: {fileID: 6903163285629992302}
   m_Layer: 0
   m_Name: mixamorig:Hips
   m_TagString: Untagged
@@ -3899,7 +3901,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 3
   _input: {fileID: 0}
-  _animator: {fileID: 9135883821240730559}
 --- !u!114 &26381598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3913,6 +3914,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _to: {fileID: 0}
+--- !u!114 &2652497842672745488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199978991459998331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77203e67a777e4de69314a9d9bcea03c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 9135883821240730559}
+--- !u!114 &6903163285629992302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199978991459998331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d72ccabb3f588414e968f591e090ca5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackReload: 1
+  _enemy: {fileID: 0}
 --- !u!1 &8216892561198053664
 GameObject:
   m_ObjectHideFlags: 0
