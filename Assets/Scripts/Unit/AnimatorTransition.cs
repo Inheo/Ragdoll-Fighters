@@ -35,34 +35,6 @@ public class AnimatorTransition
         TryFadeState(RUN_BACK_PARAMETER, 0.1f);
     }
 
-    public void PlayRightHook()
-    {
-        _animator.SetLayerWeight(1, 1);
-
-        TryFadeState(RIGHT_HOOK_PARAMETER, 0.05f, 1);
-    }
-
-    public void PlayLeftHook()
-    {
-        _animator.SetLayerWeight(1, 1);
-
-        TryFadeState(LEFT_HOOK_PARAMETER, 0.05f, 1);
-    }
-
-    public void PlayRightKick()
-    {
-        _animator.SetLayerWeight(1, 1);
-
-        TryFadeState(RIGHT_KICK_PARAMETER, 0.05f, 1);
-    }
-
-    public void PlayLeftKick()
-    {
-        _animator.SetLayerWeight(1, 1);
-
-        TryFadeState(LEFT_KICK_PARAMETER, 0.05f, 1);
-    }
-
     public void PlayRandomAttackState()
     {
         var randomIndex = Random.Range(0, 4);
@@ -77,6 +49,44 @@ public class AnimatorTransition
             PlayLeftKick();
         else
             Debug.Log("WTF???!!!");
+    }
+
+    public void PlayRightHook()
+    {
+        AttackLayerEnable();
+
+        TryFadeState(RIGHT_HOOK_PARAMETER, 0.05f, 1);
+    }
+
+    public void PlayLeftHook()
+    {
+        AttackLayerEnable();
+
+        TryFadeState(LEFT_HOOK_PARAMETER, 0.05f, 1);
+    }
+
+    public void PlayRightKick()
+    {
+        AttackLayerEnable();
+
+        TryFadeState(RIGHT_KICK_PARAMETER, 0.05f, 1);
+    }
+
+    public void PlayLeftKick()
+    {
+        AttackLayerEnable();
+
+        TryFadeState(LEFT_KICK_PARAMETER, 0.05f, 1);
+    }
+
+    public void AttackLayerDisable()
+    {
+        _animator.SetLayerWeight(1, 0);
+    }
+
+    public void AttackLayerEnable()
+    {
+        _animator.SetLayerWeight(1, 1);
     }
 
     private void TryFadeState(string stateName, float normalizedTransitionDuration, int layer = 0)
