@@ -5,15 +5,19 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private JoystickInput _input;
-    [SerializeField] private Animator _animator;
 
     private Rigidbody _rigidbody;
     private AnimatorTransition _animatorTransition;
 
+
+    public void Initialize(AnimatorTransition animatorTransition)
+    {
+        _animatorTransition = animatorTransition;
+    }
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _animatorTransition = new AnimatorTransition(_animator);
     }
 
     private void Start()
