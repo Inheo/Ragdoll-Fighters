@@ -5,6 +5,10 @@ public class AnimatorTransition
     private const string IDLE_PARAMETER = "Idle";
     private const string RUN_FORWARD_PARAMETER = "run-forward";
     private const string RUN_BACK_PARAMETER = "run-back";
+    private const string RIGHT_HOOK_PARAMETER = "right-hook";
+    private const string LEFT_HOOK_PARAMETER = "left-hook";
+    private const string RIGHT_KICK_PARAMETER = "right-kick";
+    private const string LEFT_KICK_PARAMETER = "left-kick";
 
     private string _currentAnimation;
 
@@ -18,28 +22,69 @@ public class AnimatorTransition
 
     public void Idle()
     {
-        if (_currentAnimation == IDLE_PARAMETER)
-            return;
-
-        _currentAnimation = IDLE_PARAMETER;
-        _animator.CrossFade(IDLE_PARAMETER, 0.1f);
+        TryFadeState(IDLE_PARAMETER, 0.1f);
     }
 
     public void RunForward()
     {
-        if (_currentAnimation == RUN_FORWARD_PARAMETER)
-            return;
-
-        _currentAnimation = RUN_FORWARD_PARAMETER;
-        _animator.CrossFade(RUN_FORWARD_PARAMETER, 0.1f);
+        TryFadeState(RUN_FORWARD_PARAMETER, 0.1f);
     }
 
     public void RunBack()
     {
-        if (_currentAnimation == RUN_BACK_PARAMETER)
+        TryFadeState(RUN_BACK_PARAMETER, 0.1f);
+    }
+
+    public void PlayRightHook()
+    {
+        _animator.SetLayerWeight(1, 1);
+
+        TryFadeState(RIGHT_HOOK_PARAMETER, 0.05f, 1);
+    }
+
+    public void PlayLeftHook()
+    {
+        _animator.SetLayerWeight(1, 1);
+
+        TryFadeState(LEFT_HOOK_PARAMETER, 0.05f, 1);
+    }
+
+    public void PlayRightKick()
+    {
+        _animator.SetLayerWeight(1, 1);
+
+        TryFadeState(RIGHT_KICK_PARAMETER, 0.05f, 1);
+    }
+
+    public void PlayLeftKick()
+    {
+        _animator.SetLayerWeight(1, 1);
+
+        TryFadeState(LEFT_KICK_PARAMETER, 0.05f, 1);
+    }
+
+    public void PlayRandomAttackState()
+    {
+        var randomIndex = Random.Range(0, 4);
+
+        if (randomIndex == 0)
+            PlayRightHook();
+        else if (randomIndex == 1)
+            PlayLeftHook();
+        else if (randomIndex == 2)
+            PlayRightKick();
+        else if (randomIndex == 3)
+            PlayLeftKick();
+        else
+            Debug.Log("WTF???!!!");
+    }
+
+    private void TryFadeState(string stateName, float normalizedTransitionDuration, int layer = 0)
+    {
+        if (_currentAnimation == stateName)
             return;
 
-        _currentAnimation = RUN_BACK_PARAMETER;
-        _animator.CrossFade(RUN_BACK_PARAMETER, 0.1f);
+        _currentAnimation = stateName;
+        _animator.CrossFade(stateName, normalizedTransitionDuration, layer);
     }
 }
