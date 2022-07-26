@@ -25,4 +25,9 @@ public class PlayerAttack : MonoBehaviour
 
         }
     }
+
+    public void AttackPlayEnded()
+    {
+        _animatorTransition.AttackLayerDisable();
+    }
 }
