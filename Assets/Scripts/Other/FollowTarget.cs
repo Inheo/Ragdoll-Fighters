@@ -10,6 +10,7 @@ public class FollowTarget : MonoBehaviour
         Z = 4
     }
 
+    [SerializeField, Min(0.01f)] private float _speed = 1f;
     [SerializeField] private Transform _target;
     [SerializeField] private FollowAxis _followAxis = FollowAxis.X | FollowAxis.Y | FollowAxis.Z;
 
@@ -27,6 +28,6 @@ public class FollowTarget : MonoBehaviour
         newPosition.y = (_followAxis & FollowAxis.Y) == FollowAxis.Y ? newPosition.y : transform.position.y;
         newPosition.z = (_followAxis & FollowAxis.Z) == FollowAxis.Z ? newPosition.z : transform.position.z;
 
-        transform.position = newPosition;
+        transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * _speed);
     }
 }
