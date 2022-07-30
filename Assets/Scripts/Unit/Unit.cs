@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Unit : MonoBehaviour
+public abstract class Unit : MonoBehaviour, ITakeDamage
 {
     [System.Serializable]
     public struct Health
@@ -16,7 +16,7 @@ public abstract class Unit : MonoBehaviour
     public event System.Action<Health> OnChangedHealth;
     public event System.Action OnDeath;
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(float damage)
     {
         _health.CurrentHealth -= damage;
         _health.CurrentHealth = Mathf.Clamp(_health.CurrentHealth, 0, _health.MaxHealth);
