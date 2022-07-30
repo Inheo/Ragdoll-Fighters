@@ -20,7 +20,7 @@ public class Weapon : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (_isActive == true && other.rigidbody.TryGetComponent(out ITakeDamage takeDamage))
+        if (_isActive == true && other.rigidbody != null && other.rigidbody.TryGetComponent(out ITakeDamage takeDamage))
         {
             Deactive();
             takeDamage.TakeDamage(_damage);
