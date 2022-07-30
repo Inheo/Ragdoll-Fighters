@@ -1,18 +1,21 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthViewer : MonoBehaviour
 {
     [SerializeField] private Unit _unit;
-    [SerializeField] private Transform _healthBar;
+    [SerializeField] private Image _middleGround;
+    [SerializeField] private Image _frontGround;
 
     private Coroutine _animationViewLostHealh;
 
     private void Start()
     {
-        _unit.OnChangedHealth += HealthChanged;        
+        _unit.OnChangedHealth += HealthChanged;
 
-        _healthBar.localScale = new Vector3(1f, _healthBar.localScale.y, 1f);
+        _middleGround.fillAmount = 1f;
+        _frontGround.fillAmount = 1f;
     }
 
     private void OnDestroy()
@@ -22,20 +25,29 @@ public class HealthViewer : MonoBehaviour
 
     private void HealthChanged(Unit.Health health)
     {
-        StartCoroutine(ViewLostHealth(health, 0.5f));
+        _frontGround.fillAmount = health.CurrentHealth / health.MaxHealth;
+
+        PlayChangeHealthAnimation(health);
     }
 
-    private IEnumerator ViewLostHealth(Unit.Health health, float duration)
+    private void PlayChangeHealthAnimation(Unit.Health health)
+    {
+        if (_animationViewLostHealh != null)
+            StopCoroutine(_animationViewLostHealh);
+
+        _animationViewLostHealh = StartCoroutine(ViewLostHealth(health, 0.5f, 0.5f));
+    }
+
+    private IEnumerator ViewLostHealth(Unit.Health health, float duration, float delay)
     {
         float lostTime = 0;
-        Vector3 startScale = _healthBar.localScale;
-        Vector3 endScale = startScale;
-        endScale.x = health.CurrentHealth / health.MaxHealth;
+        float startValue = _middleGround.fillAmount;
+        float endValue = health.CurrentHealth / health.MaxHealth;
 
-        while(lostTime < 1)
+        while (lostTime < 1)
         {
             lostTime += Time.deltaTime / duration;
-            transform.localScale = Vector3.Lerp(startScale, endScale, lostTime);
+            _middleGround.fillAmount = Mathf.Lerp(startValue, endValue, lostTime);
             yield return null;
         }
     }
