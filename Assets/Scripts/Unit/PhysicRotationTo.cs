@@ -14,6 +14,7 @@ public class PhysicRotationTo : MonoBehaviour
         _startRotation = transform.rotation;
         _pelvisJoint = GetComponent<ConfigurableJoint>();
     }
+
     private void FixedUpdate()
     {
         Vector3 direction = _to.position - transform.position;
