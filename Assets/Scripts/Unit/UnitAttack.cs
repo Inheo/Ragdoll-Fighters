@@ -31,10 +31,23 @@ public class UnitAttack : MonoBehaviour
             _timeLostLastAttack = 0;
             _animatorTransition.PlayRandomAttackState();
 
-            for (var i = 0; i < _weapons.Count; i++)
-            {
-                _weapons[i].Active();
-            }
+            ActiveWeapons();
+        }
+    }
+
+    private void ActiveWeapons()
+    {
+        for (var i = 0; i < _weapons.Count; i++)
+        {
+            _weapons[i].Active();
+        }
+    }
+
+    private void DeactiveWeapons()
+    {
+        for (var i = 0; i < _weapons.Count; i++)
+        {
+            _weapons[i].Deactive();
         }
     }
 
@@ -42,9 +55,6 @@ public class UnitAttack : MonoBehaviour
     {
         _animatorTransition.AttackLayerDisable();
 
-        for (var i = 0; i < _weapons.Count; i++)
-        {
-            _weapons[i].Deactive();
-        }
+        DeactiveWeapons();
     }
 }
