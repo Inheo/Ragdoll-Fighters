@@ -289,6 +289,83 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 10212798}
   m_Mesh: {fileID: 4300000, guid: 702411931968ddf488d1b4a073900bce, type: 3}
+--- !u!1001 &19044911
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 26381598, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: _to
+      value: 
+      objectReference: {fileID: 1535968708}
+    - target: {fileID: 557015419, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: _input
+      value: 
+      objectReference: {fileID: 225284909}
+    - target: {fileID: 557015419, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: _speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642887903811361954, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 724699425}
+    - target: {fileID: 6903163285629992302, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: _enemy
+      value: 
+      objectReference: {fileID: 1535968708}
+    - target: {fileID: 8216892561198053664, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: m_Name
+      value: Stickman_Footman_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8737991062207996826, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8737991062207996826, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 8737991062207996826, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8737991062207996826, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8737991062207996826, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8737991062207996826, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8737991062207996826, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8737991062207996826, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8737991062207996826, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8737991062207996826, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8737991062207996826, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
 --- !u!1 &21509020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3530,6 +3607,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322068712}
   m_Mesh: {fileID: 4300000, guid: cddf7f8598401a84aa65f2118159e20d, type: 3}
+--- !u!4 &322168246 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3824618624098517774, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+  m_PrefabInstance: {fileID: 19044911}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330501304
 GameObject:
   m_ObjectHideFlags: 0
@@ -13960,7 +14042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1247838087
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17293,6 +17375,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531480496}
   m_Mesh: {fileID: 4300000, guid: 4d7b1e8b05acda04589c4052eaa97df3, type: 3}
+--- !u!4 &1535968708 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3824618624098517774, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+  m_PrefabInstance: {fileID: 9135883819715265975}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1542376916
 GameObject:
   m_ObjectHideFlags: 0
@@ -23696,7 +23783,7 @@ PrefabInstance:
     - target: {fileID: 26381598, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
       propertyPath: _to
       value: 
-      objectReference: {fileID: 1247838090}
+      objectReference: {fileID: 322168246}
     - target: {fileID: 557015419, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
       propertyPath: _input
       value: 
@@ -23708,7 +23795,7 @@ PrefabInstance:
     - target: {fileID: 6903163285629992302, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
       propertyPath: _enemy
       value: 
-      objectReference: {fileID: 1247838090}
+      objectReference: {fileID: 322168246}
     - target: {fileID: 8216892561198053664, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
       propertyPath: m_Name
       value: Stickman_Footman
