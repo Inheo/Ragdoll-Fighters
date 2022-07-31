@@ -11,8 +11,10 @@ public class Player : Unit
 
     private AnimatorTransition _animatorTransition;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+        
         _movement = GetComponent<PlayerMovement>();
         _attack = GetComponent<PlayerAttack>();
 
