@@ -2144,7 +2144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fbe9d2d960b44740809c7cf077bd725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unit: {fileID: 2652497842672745488}
+  _unit: {fileID: 0}
   _middleGround: {fileID: 1415910686668360905}
   _frontGround: {fileID: 8789622896487642708}
 --- !u!1 &3111506993708710522
@@ -4585,10 +4585,6 @@ GameObject:
   - component: {fileID: 9135883820011843817}
   - component: {fileID: 9135883820011843816}
   - component: {fileID: 9135883820011843798}
-  - component: {fileID: 557015419}
-  - component: {fileID: 26381598}
-  - component: {fileID: 2652497842672745488}
-  - component: {fileID: 6903163285629992302}
   - component: {fileID: 4968302862453123967}
   m_Layer: 0
   m_Name: mixamorig:Hips
@@ -4741,64 +4737,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &557015419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8199978991459998331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b57a9bdcc1b994b008264eb37ed0c2fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 3
-  _input: {fileID: 0}
---- !u!114 &26381598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8199978991459998331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b42c08c399fc41b9b455667ac32a8b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _to: {fileID: 0}
---- !u!114 &2652497842672745488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8199978991459998331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77203e67a777e4de69314a9d9bcea03c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health:
-    _health: 10
-    CurrentHealth: 0
-  _animator: {fileID: 9135883821240730559}
---- !u!114 &6903163285629992302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8199978991459998331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72ccabb3f588414e968f591e090ca5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _attackReload: 1
-  _attackDistance: 2
-  _enemy: {fileID: 0}
 --- !u!114 &4968302862453123967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4821,7 +4759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8737991062207996826}
   m_Layer: 0
-  m_Name: Stickman_Footman
+  m_Name: BasicStickmanPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5384,7 +5322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4aa7a719df742139423ac2928ea2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attack: {fileID: 6903163285629992302}
+  _attack: {fileID: 0}
 --- !u!114 &8403543842484736371
 MonoBehaviour:
   m_ObjectHideFlags: 0
