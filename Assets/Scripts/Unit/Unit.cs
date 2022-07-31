@@ -6,9 +6,14 @@ public abstract class Unit : MonoBehaviour, ITakeDamage
     public struct Health
     {
         [SerializeField] private float _health;
-        [HideInInspector] public float CurrentHealth;
+        [SerializeField] public float CurrentHealth;
 
         public float StartHealth => _health;
+
+        public void Initialize()
+        {
+            CurrentHealth = _health;
+        }
     }
 
     [SerializeField] private Health _health;
@@ -17,6 +22,11 @@ public abstract class Unit : MonoBehaviour, ITakeDamage
 
     public event System.Action<Health> OnChangedHealth;
     public event System.Action OnDeath;
+
+    protected virtual void Awake()
+    {
+        _health.Initialize();
+    }
 
     public virtual void TakeDamage(float damage)
     {
