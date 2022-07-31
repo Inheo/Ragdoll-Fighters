@@ -20,6 +20,13 @@ public class UnitAttack : MonoBehaviour
     private void Start()
     {
         _weapons = new List<Weapon>(GetComponentsInChildren<Weapon>());
+
+        Unit owner = GetComponent<Unit>();
+
+        for (var i = 0; i < _weapons.Count; i++)
+        {
+            _weapons[i].Initialize(owner);
+        }
     }
 
     private void Update()
