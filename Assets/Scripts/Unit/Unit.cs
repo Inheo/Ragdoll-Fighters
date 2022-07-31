@@ -13,6 +13,8 @@ public abstract class Unit : MonoBehaviour, ITakeDamage
 
     [SerializeField] private Health _health;
 
+    public Unit Owner => this;
+
     public event System.Action<Health> OnChangedHealth;
     public event System.Action OnDeath;
 
