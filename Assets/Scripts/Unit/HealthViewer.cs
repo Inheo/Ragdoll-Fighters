@@ -25,7 +25,7 @@ public class HealthViewer : MonoBehaviour
 
     private void HealthChanged(Unit.Health health)
     {
-        _frontGround.fillAmount = health.CurrentHealth / health.MaxHealth;
+        _frontGround.fillAmount = health.CurrentHealth / health.StartHealth;
 
         PlayChangeHealthAnimation(health);
     }
@@ -42,7 +42,7 @@ public class HealthViewer : MonoBehaviour
     {
         float lostTime = 0;
         float startValue = _middleGround.fillAmount;
-        float endValue = health.CurrentHealth / health.MaxHealth;
+        float endValue = health.CurrentHealth / health.StartHealth;
 
         while (lostTime < 1)
         {

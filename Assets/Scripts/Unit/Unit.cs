@@ -5,10 +5,10 @@ public abstract class Unit : MonoBehaviour, ITakeDamage
     [System.Serializable]
     public struct Health
     {
-        [SerializeField] private float _maxHealth;
+        [SerializeField] private float _health;
         [HideInInspector] public float CurrentHealth;
 
-        public float MaxHealth => _maxHealth;
+        public float StartHealth => _health;
     }
 
     [SerializeField] private Health _health;
@@ -21,7 +21,7 @@ public abstract class Unit : MonoBehaviour, ITakeDamage
     public virtual void TakeDamage(float damage)
     {
         _health.CurrentHealth -= damage;
-        _health.CurrentHealth = Mathf.Clamp(_health.CurrentHealth, 0, _health.MaxHealth);
+        _health.CurrentHealth = Mathf.Clamp(_health.CurrentHealth, 0, _health.StartHealth);
 
         if (_health.CurrentHealth < 0)
             OnDeath?.Invoke();
