@@ -19,6 +19,11 @@ public class UnitMovement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
+    protected virtual void Update()
+    {
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+    }
+
     protected void Move(Vector2 direction)
     {
         _rigidbody.velocity = Vector3.right * direction * _speed;

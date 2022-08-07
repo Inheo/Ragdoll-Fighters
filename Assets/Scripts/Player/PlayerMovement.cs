@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerMovement : UnitMovement
 {
-    [SerializeField] private float _speed;
     [SerializeField] private JoystickInput _input;
 
     private void Start()
