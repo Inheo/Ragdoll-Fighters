@@ -6,7 +6,7 @@ public abstract class Unit : MonoBehaviour, ITakeDamage
     public struct Health
     {
         [SerializeField] private float _health;
-        [SerializeField] public float CurrentHealth;
+        [HideInInspector] public float CurrentHealth;
 
         public float StartHealth => _health;
 
@@ -17,6 +17,12 @@ public abstract class Unit : MonoBehaviour, ITakeDamage
     }
 
     [SerializeField] private Health _health;
+    [SerializeField] private Animator _animator;
+
+    private UnitMovement _movement;
+    private UnitAttack _attack;
+
+    private AnimatorTransition _animatorTransition;
 
     public Unit Owner => this;
 
@@ -25,7 +31,17 @@ public abstract class Unit : MonoBehaviour, ITakeDamage
 
     protected virtual void Awake()
     {
+        _movement = GetComponent<UnitMovement>();
+        _attack = GetComponent<UnitAttack>();
+
+        _animatorTransition = new AnimatorTransition(_animator);
+    }
+
+    private void Start()
+    {
         _health.Initialize();
+        _movement.Initialize(_animatorTransition);
+        _attack.Initialize(_animatorTransition);
     }
 
     public virtual void TakeDamage(float damage)

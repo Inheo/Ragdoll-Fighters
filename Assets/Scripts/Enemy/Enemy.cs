@@ -1,5 +1,5 @@
 using UnityEngine;
 
-public class Enemy : Unit
-{
-}
+[RequireComponent(typeof(EnemyMovement))]
+[RequireComponent(typeof(EnemyAttack))]
+public class Enemy : Unit{}
