@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AttackAnimationEventHandler : MonoBehaviour
 {
-    [SerializeField] private PlayerAttack _attack;
+    [SerializeField] private UnitAttack _attack;
 
     public void AttackPlayEnded()
     {
