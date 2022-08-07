@@ -5,7 +5,7 @@ public class UnitAttack : MonoBehaviour
 {
     [SerializeField] private float _attackReload = 1f;
     [SerializeField] private float _attackDistance = 2f;
-    [SerializeField] private Transform _enemy;
+    [SerializeField] private Unit _target;
 
     private float _timeLostLastAttack;
     private AnimatorTransition _animatorTransition;
@@ -33,7 +33,7 @@ public class UnitAttack : MonoBehaviour
     {
         _timeLostLastAttack += Time.deltaTime;
 
-        if (_timeLostLastAttack > _attackReload && Vector3.Distance(transform.position, _enemy.position) < _attackDistance)
+        if (_timeLostLastAttack > _attackReload && Vector3.Distance(transform.position, _target.transform.position) < _attackDistance)
         {
             _timeLostLastAttack = 0;
             _animatorTransition.PlayRandomAttackState();
