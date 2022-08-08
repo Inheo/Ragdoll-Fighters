@@ -23,14 +23,14 @@ public class HealthViewer : MonoBehaviour
         _unit.OnChangedHealth -= HealthChanged;
     }
 
-    private void HealthChanged(Unit.Health health)
+    private void HealthChanged(HealthSettings health)
     {
         _frontGround.fillAmount = health.CurrentHealth / health.StartHealth;
 
         PlayChangeHealthAnimation(health);
     }
 
-    private void PlayChangeHealthAnimation(Unit.Health health)
+    private void PlayChangeHealthAnimation(HealthSettings health)
     {
         if (_animationViewLostHealh != null)
             StopCoroutine(_animationViewLostHealh);
@@ -38,7 +38,7 @@ public class HealthViewer : MonoBehaviour
         _animationViewLostHealh = StartCoroutine(ViewLostHealth(health, 0.5f, 0.5f));
     }
 
-    private IEnumerator ViewLostHealth(Unit.Health health, float duration, float delay)
+    private IEnumerator ViewLostHealth(HealthSettings health, float duration, float delay)
     {
         float lostTime = 0;
         float startValue = _middleGround.fillAmount;
