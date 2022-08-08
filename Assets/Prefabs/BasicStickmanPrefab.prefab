@@ -4794,6 +4794,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4413634425265672086}
   - component: {fileID: 1991221495167282881}
+  - component: {fileID: 5440922245446879342}
+  - component: {fileID: 587100991419353698}
   m_Layer: 0
   m_Name: Context
   m_TagString: Untagged
@@ -4829,10 +4831,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 5440922245446879342}
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
+--- !u!114 &5440922245446879342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8763594233195937995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ffd8c4b7e159420e987e4ae803ed99f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 9135883821240730559}
+  _health:
+    _health: 20
+    CurrentHealth: 0
+  _attack:
+    _reload: 1
+    _distance: 2
+  _movement:
+    _speed: 5
+--- !u!114 &587100991419353698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8763594233195937995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c47912ae4e51a84d92f1acf689997c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8812759682980394371
 GameObject:
   m_ObjectHideFlags: 0

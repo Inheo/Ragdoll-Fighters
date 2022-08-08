@@ -157,7 +157,7 @@ MonoBehaviour:
   _health:
     _health: 20
     CurrentHealth: 0
-  _animator: {fileID: 8869220512400966647}
+  _animator: {fileID: 0}
 --- !u!114 &2864184323440600754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,8 +200,3 @@ MonoBehaviour:
   _attackReload: 1
   _attackDistance: 2
   _target: {fileID: 0}
---- !u!95 &8869220512400966647 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 9135883821240730559, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
-  m_PrefabInstance: {fileID: 422459850586210376}
-  m_PrefabAsset: {fileID: 0}
