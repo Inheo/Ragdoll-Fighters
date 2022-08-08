@@ -1,17 +1,18 @@
 using UnityEngine;
 
-
 [RequireComponent(typeof(Rigidbody))]
 public class UnitMovement : MonoBehaviour
 {
-    [SerializeField] private float _speed;
+    private MovementSettings _settings;
 
     private Rigidbody _rigidbody;
     private AnimatorTransition _animatorTransition;
 
-    public void Initialize(AnimatorTransition animatorTransition)
+    [Zenject.Inject]
+    public void Construct(AnimatorTransition animatorTransition, MovementSettings settings)
     {
         _animatorTransition = animatorTransition;
+        _settings = settings;
     }
 
     private void Awake()
@@ -26,7 +27,7 @@ public class UnitMovement : MonoBehaviour
 
     protected void Move(Vector2 direction)
     {
-        _rigidbody.velocity = Vector3.right * direction * _speed;
+        _rigidbody.velocity = Vector3.right * direction * _settings.Speed;
 
         if (direction.x > 0)
         {

@@ -3,17 +3,19 @@ using UnityEngine;
 
 public class UnitAttack : MonoBehaviour
 {
-    [SerializeField] private float _attackReload = 1f;
-    [SerializeField] private float _attackDistance = 2f;
     [SerializeField] private Unit _target;
+
+    private AttackSettings _attackSettings;
 
     private float _timeLostLastAttack;
     private AnimatorTransition _animatorTransition;
 
     private List<Weapon> _weapons;
 
-    public void Initialize(AnimatorTransition animatorTransition)
+    [Zenject.Inject]
+    public void Construct(AttackSettings attackSettings, AnimatorTransition animatorTransition)
     {
+        _attackSettings = attackSettings;
         _animatorTransition = animatorTransition;
     }
 
@@ -33,7 +35,7 @@ public class UnitAttack : MonoBehaviour
     {
         _timeLostLastAttack += Time.deltaTime;
 
-        if (_timeLostLastAttack > _attackReload && Vector3.Distance(transform.position, _target.transform.position) < _attackDistance)
+        if (_timeLostLastAttack > _attackSettings.Reload && Vector3.Distance(transform.position, _target.transform.position) < _attackSettings.Distance)
         {
             _timeLostLastAttack = 0;
             _animatorTransition.PlayRandomAttackState();

@@ -1,47 +1,26 @@
 using UnityEngine;
+using Zenject;
 
 public abstract class Unit : MonoBehaviour, ITakeDamage
 {
-    [System.Serializable]
-    public struct Health
-    {
-        [SerializeField] private float _health;
-        [HideInInspector] public float CurrentHealth;
-
-        public float StartHealth => _health;
-
-        public void Initialize()
-        {
-            CurrentHealth = _health;
-        }
-    }
-
-    [SerializeField] private Health _health;
+    [SerializeField] private HealthSettings _health;
     [SerializeField] private Animator _animator;
-
-    private UnitMovement _movement;
-    private UnitAttack _attack;
-
-    private AnimatorTransition _animatorTransition;
 
     public Unit Owner => this;
 
-    public event System.Action<Health> OnChangedHealth;
+    public event System.Action<HealthSettings> OnChangedHealth;
     public event System.Action OnDeath;
 
-    protected virtual void Awake()
+    [Inject]
+    public void Construct(HealthSettings health, Animator animator)
     {
-        _movement = GetComponent<UnitMovement>();
-        _attack = GetComponent<UnitAttack>();
-
-        _animatorTransition = new AnimatorTransition(_animator);
+        _health = health;
+        _animator = animator;
     }
 
     private void Start()
     {
         _health.Initialize();
-        _movement.Initialize(_animatorTransition);
-        _attack.Initialize(_animatorTransition);
     }
 
     public virtual void TakeDamage(float damage)
