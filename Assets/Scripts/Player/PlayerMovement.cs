@@ -9,4 +9,10 @@ public class PlayerMovement : UnitMovement
         _input.OnActive += Move;
         _input.OnStop += Stop;
     }
+
+    private void OnDestroy()
+    {
+        _input.OnActive -= Move;
+        _input.OnStop -= Stop; 
+    }
 }
