@@ -4758,6 +4758,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8737991062207996826}
+  - component: {fileID: 45800094846886701}
   m_Layer: 0
   m_Name: BasicStickmanPrefab
   m_TagString: Untagged
@@ -4784,6 +4785,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &45800094846886701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8216892561198053664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 8678812915730080388}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
 --- !u!1 &8763594233195937995
 GameObject:
   m_ObjectHideFlags: 0
@@ -4793,11 +4812,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4413634425265672086}
-  - component: {fileID: 1991221495167282881}
-  - component: {fileID: 5440922245446879342}
-  - component: {fileID: 587100991419353698}
+  - component: {fileID: 8678812915730080388}
   m_Layer: 0
-  m_Name: Context
+  m_Name: UnitInstaller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4818,25 +4835,7 @@ Transform:
   m_Father: {fileID: 8737991062207996826}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1991221495167282881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8763594233195937995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
-  _monoInstallers:
-  - {fileID: 5440922245446879342}
-  _installerPrefabs: []
-  _autoRun: 1
-  _kernel: {fileID: 0}
---- !u!114 &5440922245446879342
+--- !u!114 &8678812915730080388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4857,18 +4856,6 @@ MonoBehaviour:
     _distance: 2
   _movement:
     _speed: 5
---- !u!114 &587100991419353698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8763594233195937995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c47912ae4e51a84d92f1acf689997c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8812759682980394371
 GameObject:
   m_ObjectHideFlags: 0

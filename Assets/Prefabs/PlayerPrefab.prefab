@@ -87,6 +87,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ea3435ba89c1b448f81c226dbff91e4d, type: 2}
+    - target: {fileID: 8678812915730080388, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: _owner
+      value: 
+      objectReference: {fileID: 2673368232938791143}
     - target: {fileID: 8737991062207996826, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -183,7 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57a9bdcc1b994b008264eb37ed0c2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
   _input: {fileID: 0}
 --- !u!114 &5449999891502280141
 MonoBehaviour:
@@ -197,6 +200,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d72ccabb3f588414e968f591e090ca5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackReload: 1
-  _attackDistance: 2
   _target: {fileID: 0}

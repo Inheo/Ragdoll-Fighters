@@ -19,6 +19,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 8678812915730080388, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: _owner
+      value: 
+      objectReference: {fileID: 3591311020350545254}
     - target: {fileID: 8737991062207996826, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -98,7 +102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ad5a8823f974709ac25bd6cc773a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
   _stopDistance: 2
   _player: {fileID: 0}
 --- !u!114 &7381879784160267194
@@ -113,8 +116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdfb9cfd2acbd4795b258c953c642b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackReload: 1
-  _attackDistance: 2
   _target: {fileID: 0}
 --- !u!114 &8480396798785079523
 MonoBehaviour:
