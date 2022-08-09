@@ -1,18 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class UnitAttack : MonoBehaviour
 {
     [SerializeField] private Unit _target;
 
-    private AttackSettings _attackSettings;
-
     private float _timeLostLastAttack;
+
+    private AttackSettings _attackSettings;
     private AnimatorTransition _animatorTransition;
 
     private List<Weapon> _weapons;
 
-    [Zenject.Inject]
+    [Inject]
     public void Construct(AttackSettings attackSettings, AnimatorTransition animatorTransition)
     {
         _attackSettings = attackSettings;

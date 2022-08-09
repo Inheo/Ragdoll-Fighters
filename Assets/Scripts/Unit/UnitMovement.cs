@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(Rigidbody))]
 public class UnitMovement : MonoBehaviour
@@ -8,11 +9,11 @@ public class UnitMovement : MonoBehaviour
     private Rigidbody _rigidbody;
     private AnimatorTransition _animatorTransition;
 
-    [Zenject.Inject]
-    public void Construct(AnimatorTransition animatorTransition, MovementSettings settings)
+    [Inject]
+    public void Construct(MovementSettings settings, AnimatorTransition animatorTransition)
     {
-        _animatorTransition = animatorTransition;
         _settings = settings;
+        _animatorTransition = animatorTransition;
     }
 
     private void Awake()

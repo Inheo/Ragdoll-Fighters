@@ -1,18 +1,25 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class HealthViewer : MonoBehaviour
 {
-    [SerializeField] private Unit _unit;
+    [SerializeField] private Unit _owner;
     [SerializeField] private Image _middleGround;
     [SerializeField] private Image _frontGround;
 
     private Coroutine _animationViewLostHealh;
 
+    [Inject]
+    public void Construct(Unit owner)
+    {
+        _owner = owner;
+    }
+
     private void Start()
     {
-        _unit.OnChangedHealth += HealthChanged;
+        _owner.OnChangedHealth += HealthChanged;
 
         _middleGround.fillAmount = 1f;
         _frontGround.fillAmount = 1f;
@@ -20,7 +27,7 @@ public class HealthViewer : MonoBehaviour
 
     private void OnDestroy()
     {
-        _unit.OnChangedHealth -= HealthChanged;
+        _owner.OnChangedHealth -= HealthChanged;
     }
 
     private void HealthChanged(HealthSettings health)
