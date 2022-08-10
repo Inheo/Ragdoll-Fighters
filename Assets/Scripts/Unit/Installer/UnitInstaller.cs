@@ -13,6 +13,7 @@ public class UnitInstaller : MonoInstaller
     {
         Container.Bind<Animator>().FromInstance(_animator).AsSingle();
         Container.Bind<Unit>().FromInstance(_owner).AsSingle();
+        Container.Bind<ITargetSetEmitter>().FromInstance(_owner).AsSingle();
         Container.Bind<AnimatorTransition>().AsSingle();
 
         Container.Bind<HealthSettings>().FromInstance(_health).AsSingle();
