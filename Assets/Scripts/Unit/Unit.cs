@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 using Zenject;
 
-public abstract class Unit : MonoBehaviour, ITakeDamage
+public abstract class Unit : MonoBehaviour, ITakeDamage, ITargetSetEmitter
 {
     [SerializeField] private HealthSettings _health;
     [SerializeField] private Animator _animator;
@@ -10,6 +11,7 @@ public abstract class Unit : MonoBehaviour, ITakeDamage
 
     public event System.Action<HealthSettings> OnChangedHealth;
     public event System.Action OnDeath;
+    public event Action<Unit> OnSetTarget;
 
     [Inject]
     public void Construct(HealthSettings health, Animator animator)
@@ -18,9 +20,17 @@ public abstract class Unit : MonoBehaviour, ITakeDamage
         _animator = animator;
     }
 
-    private void Start()
+    public virtual void Initialize()
     {
         _health.Initialize();
+    }
+
+    protected TargetType FindTarget<TargetType>() where TargetType : Unit
+    {
+        var target = FindObjectOfType<TargetType>();
+        OnSetTarget?.Invoke(target);
+
+        return target;
     }
 
     public virtual void TakeDamage(float damage)
