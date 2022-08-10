@@ -1,3 +1,1 @@
-public class EnemyAttack : UnitAttack
-{
-}
+public class EnemyAttack : UnitAttack{}
