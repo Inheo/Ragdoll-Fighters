@@ -1,5 +1,1 @@
-using UnityEngine;
-
-public class PlayerAttack : UnitAttack
-{
-}
+public class PlayerAttack : UnitAttack{}
