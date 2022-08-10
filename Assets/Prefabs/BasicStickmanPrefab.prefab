@@ -2144,7 +2144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fbe9d2d960b44740809c7cf077bd725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unit: {fileID: 0}
+  _owner: {fileID: 0}
   _middleGround: {fileID: 1415910686668360905}
   _frontGround: {fileID: 8789622896487642708}
 --- !u!1 &3111506993708710522
@@ -4759,6 +4759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8737991062207996826}
   - component: {fileID: 45800094846886701}
+  - component: {fileID: 4693900368351331562}
   m_Layer: 0
   m_Name: BasicStickmanPrefab
   m_TagString: Untagged
@@ -4803,6 +4804,23 @@ MonoBehaviour:
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
+--- !u!114 &4693900368351331562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8216892561198053664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components: []
+  _identifier: 
+  _useSceneContext: 1
+  _context: {fileID: 0}
+  _bindType: 3
 --- !u!1 &8763594233195937995
 GameObject:
   m_ObjectHideFlags: 0
@@ -4848,6 +4866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 9135883821240730559}
+  _owner: {fileID: 0}
   _health:
     _health: 20
     CurrentHealth: 0
