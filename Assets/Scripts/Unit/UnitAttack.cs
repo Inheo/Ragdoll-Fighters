@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class UnitAttack : MonoBehaviour
+public class UnitAttack : MonoBehaviour, ITargetSetHandler
 {
-    [SerializeField] private Unit _target;
+    [SerializeField] protected Unit _target;
 
     private float _timeLostLastAttack;
 
@@ -13,11 +13,20 @@ public class UnitAttack : MonoBehaviour
 
     private List<Weapon> _weapons;
 
+    public ITargetSetEmitter TargetSetEmitter { get; private set; }
+
     [Inject]
-    public void Construct(AttackSettings attackSettings, AnimatorTransition animatorTransition)
+    public void Construct(AttackSettings attackSettings, AnimatorTransition animatorTransition, ITargetSetEmitter targetSetEmitter)
     {
         _attackSettings = attackSettings;
         _animatorTransition = animatorTransition;
+    }
+
+    [Inject]
+    public void GetTargetSetEmitter(ITargetSetEmitter targetSetEmitter)
+    {
+        TargetSetEmitter = targetSetEmitter;
+        TargetSetEmitter.OnSetTarget += SetTarget;
     }
 
     private void Start()
@@ -30,6 +39,11 @@ public class UnitAttack : MonoBehaviour
         {
             _weapons[i].Initialize(owner);
         }
+    }
+
+    private void OnDestroy()
+    {
+        TargetSetEmitter.OnSetTarget -= SetTarget;
     }
 
     private void Update()
@@ -66,5 +80,10 @@ public class UnitAttack : MonoBehaviour
         _animatorTransition.AttackLayerDisable();
 
         DeactiveWeapons();
+    }
+
+    public void SetTarget(Unit target)
+    {
+        _target = target;
     }
 }
