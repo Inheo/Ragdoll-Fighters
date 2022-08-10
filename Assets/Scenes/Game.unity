@@ -19964,6 +19964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _level: {fileID: 353817880}
+  _input: {fileID: 225284909}
   _playerFactory: {fileID: 1857315644}
   _enemyFactory: {fileID: 1076396415}
 --- !u!1 &1832409052
