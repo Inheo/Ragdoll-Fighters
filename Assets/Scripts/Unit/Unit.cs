@@ -41,7 +41,7 @@ public abstract class Unit : MonoBehaviour, ITakeDamage, ITargetSetEmitter, ICan
         _health.CurrentHealth -= damage;
         _health.CurrentHealth = Mathf.Clamp(_health.CurrentHealth, 0, _health.StartHealth);
 
-        if (_health.CurrentHealth < 0)
+        if (_health.CurrentHealth <= 0)
             OnDeath?.Invoke();
 
         OnChangedHealth?.Invoke(_health);
