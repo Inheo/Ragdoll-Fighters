@@ -3,13 +3,17 @@ using Zenject;
 
 public class UnitRotator : MonoBehaviour, ITargetSetHandler
 {
-    [SerializeField] protected Unit _target;
+    protected Unit _target;
+
+    private ICanActionable _canActionable;
 
     public ITargetSetEmitter TargetSetEmitter { get; private set; }
 
     [Inject]
-    public void GetTargetSetEmitter(ITargetSetEmitter targetSetEmitter)
+    public void Construct(ICanActionable canActionable, ITargetSetEmitter targetSetEmitter)
     {
+        _canActionable = canActionable;
+
         TargetSetEmitter = targetSetEmitter;
         TargetSetEmitter.OnSetTarget += SetTarget;
     }
@@ -21,6 +25,9 @@ public class UnitRotator : MonoBehaviour, ITargetSetHandler
 
     private void Update()
     {
+        if (_canActionable.IsCanAction() == false)
+            return;
+
         Vector3 direction = _target.transform.position - transform.position;
         direction.y = 0;
         transform.rotation = Quaternion.LookRotation(direction);

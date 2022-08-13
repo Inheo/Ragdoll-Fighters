@@ -9,7 +9,7 @@ public class EnemyMovement : UnitMovement, ITargetSetHandler
     public ITargetSetEmitter TargetSetEmitter { get; private set; }
 
     [Inject]
-    public void GetTargetSetEmitter(ITargetSetEmitter targetSetEmitter)
+    public void Construct(ITargetSetEmitter targetSetEmitter)
     {
         TargetSetEmitter = targetSetEmitter;
         TargetSetEmitter.OnSetTarget += SetTarget;
