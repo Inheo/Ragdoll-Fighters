@@ -11,14 +11,27 @@ public class UnitInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<Animator>().FromInstance(_animator).AsSingle();
-        Container.Bind<Unit>().FromInstance(_owner).AsSingle();
-        Container.Bind<ITargetSetEmitter>().FromInstance(_owner).AsSingle();
-        Container.Bind<AnimatorTransition>().AsSingle();
+        BindAnimator();
+        BindOwner();
+        BindUnitSettings();
+    }
 
+    private void BindUnitSettings()
+    {
         Container.Bind<HealthSettings>().FromInstance(_health).AsSingle();
         Container.Bind<AttackSettings>().FromInstance(_attack).AsSingle();
         Container.Bind<MovementSettings>().FromInstance(_movement).AsSingle();
+    }
 
+    private void BindAnimator()
+    {
+        Container.Bind<Animator>().FromInstance(_animator).AsSingle();
+        Container.Bind<AnimatorTransition>().AsSingle();
+    }
+    private void BindOwner()
+    {
+        Container.Bind<Unit>().FromInstance(_owner).AsSingle();
+        Container.Bind<ITargetSetEmitter>().FromInstance(_owner).AsSingle();
+        Container.Bind<ICanActionable>().FromInstance(_owner).AsSingle();
     }
 }
