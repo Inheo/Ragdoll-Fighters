@@ -8,6 +8,9 @@ public class Level : MonoBehaviour
     private PlayerFactory _playerFactory;
     private EnemyFactory _enemyFactory;
 
+    private Player _player;
+    private Enemy _enemy;
+
     public event System.Action OnLevelFinish;
     public event System.Action OnLevelFail;
 
@@ -25,18 +28,10 @@ public class Level : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-    }
-
-    private void Start()
-    {
         IsLevelEnd = false;
+
+        CreateUnits();
         SubscribeEvents();
-
-        Player player = _playerFactory.Create();
-        Enemy enemy = _enemyFactory.Create();
-
-        player.Initialize();
-        enemy.Initialize();
     }
 
     private void OnDestroy()
@@ -44,24 +39,26 @@ public class Level : MonoBehaviour
         UnsubscribeEvents();
     }
 
+    private void CreateUnits()
+    {
+        _player = _playerFactory.Create();
+        _enemy = _enemyFactory.Create();
+    }
+
     private void SubscribeEvents()
     {
+        _player.OnDeath += Fail;
+        _enemy.OnDeath += Win;
     }
 
     private void UnsubscribeEvents()
     {
     }
 
-    private void CheckWin()
+    private void Win()
     {
-        bool isWin = true;
-
-        if (isWin == true)
-        {
-            IsLevelEnd = true;
-
-            OnLevelFinish?.Invoke();
-        }
+        IsLevelEnd = true;
+        OnLevelFinish?.Invoke();
     }
 
     private void Fail()

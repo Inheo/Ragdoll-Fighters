@@ -2,25 +2,28 @@ using System;
 using UnityEngine;
 using Zenject;
 
-public abstract class Unit : MonoBehaviour, ITakeDamage, ITargetSetEmitter
+public abstract class Unit : MonoBehaviour, ITakeDamage, ITargetSetEmitter, ICanActionable
 {
-    [SerializeField] private HealthSettings _health;
-    [SerializeField] private Animator _animator;
+    private HealthSettings _health;
+    private Animator _animator;
+    private Level _level;
 
     public Unit Owner => this;
 
     public event System.Action<HealthSettings> OnChangedHealth;
+    public event System.Action<float> OnTakedDamage;
     public event System.Action OnDeath;
     public event Action<Unit> OnSetTarget;
 
     [Inject]
-    public void Construct(HealthSettings health, Animator animator)
+    public void Construct(HealthSettings health, Animator animator, Level level)
     {
         _health = health;
         _animator = animator;
+        _level = level;
     }
 
-    public virtual void Initialize()
+    protected virtual void Start()
     {
         _health.Initialize();
     }
@@ -42,5 +45,8 @@ public abstract class Unit : MonoBehaviour, ITakeDamage, ITargetSetEmitter
             OnDeath?.Invoke();
 
         OnChangedHealth?.Invoke(_health);
+        OnTakedDamage?.Invoke(damage);
     }
+
+    public bool IsCanAction() => _level.IsLevelEnd == false;
 }
