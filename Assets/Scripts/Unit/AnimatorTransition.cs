@@ -9,6 +9,7 @@ public class AnimatorTransition
     private const string LEFT_HOOK_PARAMETER = "left-hook";
     private const string RIGHT_KICK_PARAMETER = "right-kick";
     private const string LEFT_KICK_PARAMETER = "left-kick";
+    private const string DEAD_PARAMETER = "dead";
 
     private string _currentAnimation;
 
@@ -77,6 +78,13 @@ public class AnimatorTransition
         AttackLayerEnable();
 
         TryFadeState(LEFT_KICK_PARAMETER, 0.05f, 1);
+    }
+
+    public void PlayDead()
+    {
+        AttackLayerDisable();
+
+        TryFadeState(DEAD_PARAMETER, 0.05f);
     }
 
     public void AttackLayerDisable()
