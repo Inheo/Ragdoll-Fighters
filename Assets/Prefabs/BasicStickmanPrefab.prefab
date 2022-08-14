@@ -4866,7 +4866,7 @@ MonoBehaviour:
     _health: 20
     CurrentHealth: 0
   _attack:
-    _reload: 1
+    _reload: 0.5
     _distance: 2
   _movement:
     _speed: 5
