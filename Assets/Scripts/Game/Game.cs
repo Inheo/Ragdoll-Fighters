@@ -9,6 +9,7 @@ public class Game : MonoBehaviour, IStartCoroutine
     [SerializeField] private FadePanel _failPanel;
 
     private SceneLoader _sceneLoader;
+    private Level _level;
 
     public event System.Action<int> OnStartLevel;
     public event System.Action<int> OnFinishLevel;
@@ -43,19 +44,20 @@ public class Game : MonoBehaviour, IStartCoroutine
     private void SceneLoaded()
     {
         _sceneLoader.OnSceneLoaded -= SceneLoaded;
+        _level = Level.Instance;
         Subscribe();
     }
 
     private void Subscribe()
     {
-        Level.Instance.OnLevelFinish += ShowWinPanel;
-        Level.Instance.OnLevelFail += ShowFailPanel;
+        _level.OnLevelFinish += ShowWinPanel;
+        _level.OnLevelFail += ShowFailPanel;
     }
 
     private void Unsubscribe()
     {
-        Level.Instance.OnLevelFinish -= ShowWinPanel;
-        Level.Instance.OnLevelFail -= ShowFailPanel;
+        _level.OnLevelFinish -= ShowWinPanel;
+        _level.OnLevelFail -= ShowFailPanel;
     }
 
     private void ShowWinPanel()
