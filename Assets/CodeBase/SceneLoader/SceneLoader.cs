@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader
@@ -8,24 +9,26 @@ public class SceneLoader
 
     public event Action OnSceneLoaded;
 
-    private  IStartCoroutine _coroutineStarter;
+    private IStartCoroutine _coroutineStarter;
 
     public SceneLoader(IStartCoroutine coroutineStarter)
     {
         _coroutineStarter = coroutineStarter;
     }
 
-    public bool TryLoadLevel(string newScene)
+    public void Load(string name)
     {
         if (!string.IsNullOrEmpty(_currentScene))
         {
             SceneManager.UnloadSceneAsync(_currentScene, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
         }
 
-        _currentScene = newScene;
+        _currentScene = name;
         _coroutineStarter.StartCoroutine(LoadScene(_currentScene));
-        return true;
     }
+
+    public void LoadAsync(string name, Action onLoaded = null) => 
+        LoadSceneAsync(name, onLoaded);
 
     private IEnumerator LoadScene(string sceneName)
     {
@@ -34,6 +37,22 @@ public class SceneLoader
         yield return null;
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
+    }
+
+    private IEnumerator LoadSceneAsync(string name, Action onLoaded = null)
+    {
+        if (SceneManager.GetActiveScene().name == name)
+        {
+            onLoaded?.Invoke();
+            yield break;
+        }
+
+        AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(name);
+
+        while (!waitNextScene.isDone)
+            yield return null;
+
+        onLoaded?.Invoke();
     }
 
     private void SceneLoaded(Scene scene, LoadSceneMode mode)

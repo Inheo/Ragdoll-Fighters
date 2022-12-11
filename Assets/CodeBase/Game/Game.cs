@@ -38,7 +38,7 @@ public class Game : MonoBehaviour, IStartCoroutine
 
         _sceneLoader.OnSceneLoaded += SceneLoaded;
 
-        _sceneLoader.TryLoadLevel(GAME_PARAMETER);
+        _sceneLoader.Load(GAME_PARAMETER);
     }
 
     private void SceneLoaded()
