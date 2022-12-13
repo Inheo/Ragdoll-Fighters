@@ -4,9 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyAttack))]
 public class Enemy : Unit
 {
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         FindTarget<Player>();
     }
 }
