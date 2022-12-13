@@ -6,7 +6,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace CodeBase.Infrastructure.AssetManagement
 {
-    public class AssetProvider
+    public class AssetProvider : IAssetProvider
     {
         private readonly Dictionary<string, AsyncOperationHandle> _completedCache = new Dictionary<string, AsyncOperationHandle>();
         private readonly Dictionary<string, List<AsyncOperationHandle>> _handles = new Dictionary<string, List<AsyncOperationHandle>>();
@@ -32,10 +32,10 @@ namespace CodeBase.Infrastructure.AssetManagement
             return await RunWithChacheOnComplete(Addressables.LoadAssetAsync<T>(address), address);
         }
 
-        public Task<GameObject> Instantiate(string address, Vector3 at) => 
+        public Task<GameObject> Instantiate(string address, Vector3 at) =>
             Addressables.InstantiateAsync(address, at, Quaternion.identity).Task;
 
-        public Task<GameObject> Instantiate(string address) => 
+        public Task<GameObject> Instantiate(string address) =>
             Addressables.InstantiateAsync(address).Task;
 
         public void CleanUp()
@@ -66,7 +66,7 @@ namespace CodeBase.Infrastructure.AssetManagement
 
         private void AddHandle<T>(AsyncOperationHandle handle, string key)
         {
-            if(!_handles.TryGetValue(key, out List<AsyncOperationHandle> resourceHandles))
+            if (!_handles.TryGetValue(key, out List<AsyncOperationHandle> resourceHandles))
             {
                 resourceHandles = new List<AsyncOperationHandle>();
                 _handles[key] = resourceHandles;
