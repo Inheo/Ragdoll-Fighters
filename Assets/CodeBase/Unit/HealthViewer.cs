@@ -5,21 +5,15 @@ using Zenject;
 
 public class HealthViewer : MonoBehaviour
 {
-    [SerializeField] private Unit _owner;
+    [SerializeField] private UnitHealth _unitHealth;
     [SerializeField] private Image _middleGround;
     [SerializeField] private Image _frontGround;
 
     private Coroutine _animationViewLostHealh;
 
-    [Inject]
-    public void Construct(Unit owner)
-    {
-        _owner = owner;
-    }
-
     private void Start()
     {
-        _owner.OnChangedHealth += HealthChanged;
+        _unitHealth.OnHealthChanged += HealthChanged;
 
         _middleGround.fillAmount = 1f;
         _frontGround.fillAmount = 1f;
@@ -27,29 +21,29 @@ public class HealthViewer : MonoBehaviour
 
     private void OnDestroy()
     {
-        _owner.OnChangedHealth -= HealthChanged;
+        _unitHealth.OnHealthChanged -= HealthChanged;
     }
 
-    private void HealthChanged(HealthSettings health)
+    private void HealthChanged()
     {
-        _frontGround.fillAmount = health.CurrentHealth / health.StartHealth;
+        _frontGround.fillAmount = _unitHealth.Current / _unitHealth.Max;
 
-        PlayChangeHealthAnimation(health);
+        PlayChangeHealthAnimation();
     }
 
-    private void PlayChangeHealthAnimation(HealthSettings health)
+    private void PlayChangeHealthAnimation()
     {
         if (_animationViewLostHealh != null)
             StopCoroutine(_animationViewLostHealh);
 
-        _animationViewLostHealh = StartCoroutine(ViewLostHealth(health, 0.5f, 0.5f));
+        _animationViewLostHealh = StartCoroutine(ViewLostHealth(0.5f, 0.5f));
     }
 
-    private IEnumerator ViewLostHealth(HealthSettings health, float duration, float delay)
+    private IEnumerator ViewLostHealth(float duration, float delay)
     {
         float lostTime = 0;
         float startValue = _middleGround.fillAmount;
-        float endValue = health.CurrentHealth / health.StartHealth;
+        float endValue = _unitHealth.Current / _unitHealth.Max;
 
         while (lostTime < 1)
         {

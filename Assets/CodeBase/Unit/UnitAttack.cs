@@ -2,34 +2,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class UnitAttack : MonoBehaviour, ITargetSetHandler
+public class UnitAttack : MonoBehaviour, IAttack
 {
-    protected Unit _target;
+    public float AttackCooldown { get; set; } = 3.0f;
+    public float Damage { get; set; } = 1;
 
-    private float _timeLostLastAttack;
+    private float _attackCooldown;
 
-    private AttackSettings _attackSettings;
     private AnimatorTransition _animatorTransition;
     private ICanActionable _canActionable;
     private Unit _owner;
+    private bool _attackIsActive;
 
     private List<Weapon> _weapons;
 
-    public ITargetSetEmitter TargetSetEmitter { get; private set; }
-
     [Inject]
-    public void Construct(AttackSettings attackSettings,
-                            AnimatorTransition animatorTransition,
-                            ITargetSetEmitter targetSetEmitter,
-                            ICanActionable canActionable,
-                            Unit owner)
+    public void Construct(AnimatorTransition animatorTransition, ICanActionable canActionable, Unit owner)
     {
-        _attackSettings = attackSettings;
         _animatorTransition = animatorTransition;
         _canActionable = canActionable;
-
-        TargetSetEmitter = targetSetEmitter;
-        TargetSetEmitter.OnSetTarget += SetTarget;
 
         _owner = owner;
     }
@@ -40,23 +31,32 @@ public class UnitAttack : MonoBehaviour, ITargetSetHandler
         WeaponsInitialize();
     }
 
-    private void OnDestroy()
-    {
-        TargetSetEmitter.OnSetTarget -= SetTarget;
-    }
-
     private void Update()
     {
-        _timeLostLastAttack += Time.deltaTime;
+        UpdateCooldown();
 
-        if (AttackConditions())
-        {
-            _timeLostLastAttack = 0;
-            _animatorTransition.PlayRandomAttackState();
-
-            ActiveWeapons();
-        }
+        if (CanAttack())
+            StartAttack();
     }
+
+    private void StartAttack()
+    {
+        _attackCooldown = 0;
+        _animatorTransition.PlayRandomAttackState();
+        ActiveWeapons();
+    }
+
+    public void AttackPlayEnded()
+    {
+        _animatorTransition.AttackLayerDisable();
+        DeactiveWeapons();
+    }
+
+    public void EnableAttack() =>
+        _attackIsActive = true;
+
+    public void DisableAttack() =>
+        _attackIsActive = false;
 
     private void WeaponsInitialize()
     {
@@ -71,13 +71,19 @@ public class UnitAttack : MonoBehaviour, ITargetSetHandler
         _weapons = new List<Weapon>(GetComponentsInChildren<Weapon>());
     }
 
-    private bool AttackConditions()
+    private bool CanAttack()
     {
-        bool isReloaded = _timeLostLastAttack > _attackSettings.Reload;
-        bool isTargetNear = Vector3.Distance(transform.position, _target.transform.position) < _attackSettings.Distance;
-
-        return isReloaded && isTargetNear && _canActionable.IsCanAction();
+        return CooldownIsUp() && _attackIsActive && _canActionable.IsCanAction();
     }
+
+    private void UpdateCooldown()
+    {
+        if(!CooldownIsUp())
+            _attackCooldown -= Time.deltaTime;
+    }
+
+    private bool CooldownIsUp() => 
+        _attackCooldown <= 0;
 
     private void ActiveWeapons()
     {
@@ -93,17 +99,5 @@ public class UnitAttack : MonoBehaviour, ITargetSetHandler
         {
             _weapons[i].Deactive();
         }
-    }
-
-    public void AttackPlayEnded()
-    {
-        _animatorTransition.AttackLayerDisable();
-
-        DeactiveWeapons();
-    }
-
-    public void SetTarget(Unit target)
-    {
-        _target = target;
     }
 }

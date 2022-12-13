@@ -4,19 +4,11 @@ using Zenject;
 [RequireComponent(typeof(Rigidbody))]
 public class UnitMovement : MonoBehaviour
 {
-    private MovementSettings _settings;
+    public float Speed;
 
     private Rigidbody _rigidbody;
-    private AnimatorTransition _animatorTransition;
-    private ICanActionable _canActionable;
-
-    [Inject]
-    public void Construct(MovementSettings settings, AnimatorTransition animatorTransition, ICanActionable canActionable)
-    {
-        _settings = settings;
-        _animatorTransition = animatorTransition;
-        _canActionable = canActionable;
-    }
+    [Inject] private AnimatorTransition _animatorTransition;
+    [Inject] private ICanActionable _canActionable;
 
     private void Awake()
     {
@@ -36,7 +28,7 @@ public class UnitMovement : MonoBehaviour
         if (_canActionable.IsCanAction() == false)
             return;
 
-        _rigidbody.velocity = Vector3.right * direction * _settings.Speed;
+        _rigidbody.velocity = Vector3.right * direction * Speed;
 
         if (direction.x > 0)
         {
