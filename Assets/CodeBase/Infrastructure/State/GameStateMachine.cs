@@ -12,7 +12,9 @@ namespace CodeBase.Infrastructure.States
         {
             _states = new Dictionary<Type, IExitableState>
             {
-                [typeof(LoadProgressState)] = new LoadProgressState(this)
+                [typeof(LoadProgressState)] = new LoadProgressState(this),
+                [typeof(LoadLevelState)] = new LoadLevelState(),
+                [typeof(GameLoopState)] = new GameLoopState()
             };
         }
 
