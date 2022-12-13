@@ -7,7 +7,7 @@ namespace CodeBase.StaticData
     public class LevelStaticData : ScriptableObject
     {
         public string LevelKey;
-        public List<EnemySpawnerStaticData> EnemySpawners;
+        public EnemyData EnemyData;
         public Vector3 PlayerPosition;
     }
 }
