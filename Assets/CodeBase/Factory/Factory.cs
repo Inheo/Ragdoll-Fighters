@@ -10,7 +10,7 @@ public abstract class Factory<T> : MonoBehaviour where T : MonoBehaviour
 
     [Inject] private DiContainer _diContainer;
 
-    public virtual T Create()
+    protected virtual T Create()
     {
         T result = _diContainer.InstantiatePrefab(_prefab, _spawnPoint.position, Quaternion.identity, _parent).GetComponentInChildren<T>();
 

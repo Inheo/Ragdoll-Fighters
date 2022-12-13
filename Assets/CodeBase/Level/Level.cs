@@ -2,15 +2,16 @@ using System.Linq;
 using UnityEngine;
 using Scripts.Data;
 using Zenject;
+using CodeBase.Infrastructure.Factory;
+using CodeBase.StaticData;
 
 public class Level : MonoBehaviour
 {
-    private PlayerFactory _playerFactory;
-    private EnemyFactory _enemyFactory;
+    [Inject] private IGameFactory _factory;
     private LevelStartButton _levelStartButton;
 
-    private Player _player;
-    private Enemy _enemy;
+    private UnitDeath _player;
+    private UnitDeath _enemy;
 
     public event System.Action OnLevelFinish;
     public event System.Action OnLevelFail;
@@ -20,12 +21,9 @@ public class Level : MonoBehaviour
     public static Level Instance { get; private set; }
 
     [Inject]
-    public void Construct(PlayerFactory playerFactory, EnemyFactory enemyFactory, LevelStartButton levelStartButton)
+    public void Construct(LevelStartButton levelStartButton)
     {
         IsLevelEnd = true;
-
-        _playerFactory = playerFactory;
-        _enemyFactory = enemyFactory;
 
         _levelStartButton = levelStartButton;
     }
@@ -34,7 +32,7 @@ public class Level : MonoBehaviour
     {
         Instance = this;
 
-        CreateUnits();
+        GetUnits();
         SubscribeEvents();
     }
 
@@ -43,10 +41,10 @@ public class Level : MonoBehaviour
         UnsubscribeEvents();
     }
 
-    private void CreateUnits()
+    private void GetUnits()
     {
-        _player = _playerFactory.Create();
-        _enemy = _enemyFactory.Create();
+        _player = _factory.Player.GetComponentInChildren<UnitDeath>();
+        _enemy = _factory.Enemy.GetComponentInChildren<UnitDeath>();
     }
 
     private void SubscribeEvents()
