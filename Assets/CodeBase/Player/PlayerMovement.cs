@@ -3,13 +3,7 @@ using Zenject;
 
 public class PlayerMovement : UnitMovement
 {
-    [SerializeField] private JoystickInput _input;
-
-    [Inject]
-    public void Construct(JoystickInput input)
-    {
-        _input = input;
-    }
+    [Inject] private JoystickInput _input;
 
     private void Start()
     {

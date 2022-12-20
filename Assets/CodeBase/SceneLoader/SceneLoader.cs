@@ -28,7 +28,7 @@ public class SceneLoader
     }
 
     public void LoadAsync(string name, Action onLoaded = null) => 
-        LoadSceneAsync(name, onLoaded);
+        _coroutineStarter.StartCoroutine(LoadSceneAsync(name, onLoaded));
 
     private IEnumerator LoadScene(string sceneName)
     {

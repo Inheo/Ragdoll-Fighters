@@ -4,15 +4,9 @@ using Zenject;
 
 public abstract class Unit : MonoBehaviour, ITargetSetEmitter, ICanActionable
 {
-    private Level _level;
+     private Level _level;
 
     public event Action<Unit> OnSetTarget;
-
-    [Inject]
-    public void Construct(Level level)
-    {
-        _level = level;
-    }
 
     protected TargetType FindTarget<TargetType>() where TargetType : Unit
     {

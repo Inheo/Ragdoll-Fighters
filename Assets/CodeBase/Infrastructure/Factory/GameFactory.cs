@@ -19,16 +19,17 @@ namespace CodeBase.Infrastructure.Factory
 
         public async Task<GameObject> CreatePlayer(Vector3 at) 
         {
-            GameObject player = await Instantiate(AssetAddress.PLAYER_PATH, at);
-            Player = player;
-            return player;
+            Player = await Instantiate(AssetAddress.PLAYER_PATH, at);
+            return Player;
         }
 
         public async Task<GameObject> CreateEnemy(EnemyTypeId enemyTypeId, Vector3 at)
         {
+            var level = _diContainer .Resolve<Level>();
+            Debug.Log((level == null));
             EnemyStaticData enemyData = _staticDataService.ForEnemy(enemyTypeId);
             GameObject prefab = await _assets.Load<GameObject>(enemyData.PrefabReference);
-            GameObject enemy = Object.Instantiate(prefab, at, Quaternion.identity);
+            GameObject enemy = _diContainer.InstantiatePrefab(prefab, at, Quaternion.identity, null);
 
             IHealth health = enemy.GetComponentInChildren<IHealth>();
             health.Max = enemyData.HealthPoint;
@@ -37,7 +38,7 @@ namespace CodeBase.Infrastructure.Factory
             IAttack attack = enemy.GetComponentInChildren<IAttack>();
             attack.Damage = enemyData.AttackDamage;
             attack.AttackCooldown = enemyData.AttackCooldown;
-
+            
             CheckAttackRange attackRange = enemy.GetComponentInChildren<CheckAttackRange>();
             attackRange.Distance = enemyData.AttackDistance;
             attackRange.Attack = attack;

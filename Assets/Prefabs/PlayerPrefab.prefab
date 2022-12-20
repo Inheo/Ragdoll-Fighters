@@ -71,6 +71,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ea3435ba89c1b448f81c226dbff91e4d, type: 2}
+    - target: {fileID: 4000415737064076156, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: _owner
+      value: 
+      objectReference: {fileID: 2673368232938791143}
     - target: {fileID: 4693900368351331562, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
       propertyPath: _components.Array.size
       value: 1
@@ -203,7 +207,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 0
-  _input: {fileID: 0}
 --- !u!114 &5449999891502280141
 MonoBehaviour:
   m_ObjectHideFlags: 0

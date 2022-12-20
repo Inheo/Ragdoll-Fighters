@@ -64,7 +64,7 @@ namespace CodeBase.Infrastructure.AssetManagement
             return await handle.Task;
         }
 
-        private void AddHandle<T>(AsyncOperationHandle handle, string key)
+        private void AddHandle<T>(AsyncOperationHandle handle, string key) where T : class
         {
             if (!_handles.TryGetValue(key, out List<AsyncOperationHandle> resourceHandles))
             {

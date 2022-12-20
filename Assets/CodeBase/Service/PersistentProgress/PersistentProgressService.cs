@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CodeBase.Service.PersistentProgress
 {
-    public class PersistentProgressService : MonoBehaviour, IPersistentProgressService
+    public class PersistentProgressService : IPersistentProgressService
     {
         public PlayerProgress Progress { get; set; }
     }
