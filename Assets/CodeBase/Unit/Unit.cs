@@ -4,7 +4,7 @@ using Zenject;
 
 public abstract class Unit : MonoBehaviour, ITargetSetEmitter, ICanActionable
 {
-     private Level _level;
+    [Inject] private Level _level;
 
     public event Action<Unit> OnSetTarget;
 

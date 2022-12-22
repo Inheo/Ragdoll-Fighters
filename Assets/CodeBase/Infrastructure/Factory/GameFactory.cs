@@ -9,15 +9,22 @@ namespace CodeBase.Infrastructure.Factory
 {
     public class GameFactory : IGameFactory
     {
-        [Inject] private IAssetProvider _assets;
-        [Inject] private IStaticDataService _staticDataService;
-        [Inject] private DiContainer _diContainer;
+        private readonly IAssetProvider _assets;
+        private readonly IStaticDataService _staticDataService;
+        private readonly DiContainer _diContainer;
 
         public GameObject Player { get; private set; }
 
         public GameObject Enemy { get; private set; }
 
-        public async Task<GameObject> CreatePlayer(Vector3 at) 
+        public GameFactory(IAssetProvider assets, IStaticDataService staticDataService, DiContainer diContainer)
+        {
+            _assets = assets;
+            _staticDataService = staticDataService;
+            _diContainer = diContainer;
+        }
+
+        public async Task<GameObject> CreatePlayer(Vector3 at)
         {
             Player = await Instantiate(AssetAddress.PLAYER_PATH, at);
             return Player;
@@ -25,7 +32,7 @@ namespace CodeBase.Infrastructure.Factory
 
         public async Task<GameObject> CreateEnemy(EnemyTypeId enemyTypeId, Vector3 at)
         {
-            var level = _diContainer .Resolve<Level>();
+            var level = _diContainer.Resolve<Level>();
             Debug.Log((level == null));
             EnemyStaticData enemyData = _staticDataService.ForEnemy(enemyTypeId);
             GameObject prefab = await _assets.Load<GameObject>(enemyData.PrefabReference);
@@ -38,7 +45,7 @@ namespace CodeBase.Infrastructure.Factory
             IAttack attack = enemy.GetComponentInChildren<IAttack>();
             attack.Damage = enemyData.AttackDamage;
             attack.AttackCooldown = enemyData.AttackCooldown;
-            
+
             CheckAttackRange attackRange = enemy.GetComponentInChildren<CheckAttackRange>();
             attackRange.Distance = enemyData.AttackDistance;
             attackRange.Attack = attack;

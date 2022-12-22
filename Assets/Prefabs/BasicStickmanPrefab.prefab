@@ -2198,7 +2198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fbe9d2d960b44740809c7cf077bd725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitHealth: {fileID: 0}
+  _unitHealth: {fileID: 471578732199822145}
   _middleGround: {fileID: 1415910686668360905}
   _frontGround: {fileID: 8789622896487642708}
 --- !u!1 &3111506993708710522
@@ -4641,6 +4641,8 @@ GameObject:
   - component: {fileID: 9135883820011843798}
   - component: {fileID: 4968302862453123967}
   - component: {fileID: 8791285454393219421}
+  - component: {fileID: 471578732199822145}
+  - component: {fileID: 6300085736103406754}
   m_Layer: 0
   m_Name: mixamorig:Hips
   m_TagString: Untagged
@@ -4816,6 +4818,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b42c08c399fc41b9b455667ac32a8b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &471578732199822145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199978991459998331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682cdae5b196e464e9c1823b40518410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6300085736103406754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199978991459998331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 506785f5b11884f67b6899679e52fe09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 471578732199822145}
 --- !u!1 &8216892561198053664
 GameObject:
   m_ObjectHideFlags: 0

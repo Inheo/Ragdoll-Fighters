@@ -21,7 +21,7 @@ namespace CodeBase.Infrastructure.AssetManagement
             if (_completedCache.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle completedHandle))
                 return completedHandle.Result as T;
 
-            return await RunWithChacheOnComplete(Addressables.LoadAssetAsync<T>(assetReference), assetReference.AssetGUID);
+            return await RunWithCacheOnComplete(Addressables.LoadAssetAsync<T>(assetReference), assetReference.AssetGUID);
         }
 
         public async Task<T> Load<T>(string address) where T : class
@@ -29,7 +29,7 @@ namespace CodeBase.Infrastructure.AssetManagement
             if (_completedCache.TryGetValue(address, out AsyncOperationHandle completedHandle))
                 return completedHandle.Result as T;
 
-            return await RunWithChacheOnComplete(Addressables.LoadAssetAsync<T>(address), address);
+            return await RunWithCacheOnComplete(Addressables.LoadAssetAsync<T>(address), address);
         }
 
         public Task<GameObject> Instantiate(string address, Vector3 at) =>
@@ -52,7 +52,7 @@ namespace CodeBase.Infrastructure.AssetManagement
             _handles.Clear();
         }
 
-        private async Task<T> RunWithChacheOnComplete<T>(AsyncOperationHandle<T> handle, string key) where T : class
+        private async Task<T> RunWithCacheOnComplete<T>(AsyncOperationHandle<T> handle, string key) where T : class
         {
             handle.Completed += completeHandler =>
             {

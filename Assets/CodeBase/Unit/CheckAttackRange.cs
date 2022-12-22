@@ -9,6 +9,7 @@ public class CheckAttackRange : MonoBehaviour
 
     private void Start()
     {
+        Attack = Attack == null ? GetComponentInChildren<IAttack>() : Attack;
         Attack.DisableAttack();
     }
 
