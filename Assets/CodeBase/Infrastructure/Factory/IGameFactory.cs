@@ -9,6 +9,7 @@ namespace CodeBase.Infrastructure.Factory
         GameObject Player { get; }
         GameObject Enemy { get; }
 
+        void CleanUp();
         Task<GameObject> CreateEnemy(EnemyTypeId enemyTypeId, Vector3 at);
         Task<GameObject> CreatePlayer(Vector3 at);
     }

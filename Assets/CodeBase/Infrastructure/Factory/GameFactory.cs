@@ -23,6 +23,11 @@ namespace CodeBase.Infrastructure.Factory
             _staticDataService = staticDataService;
             _diContainer = diContainer;
         }
+        
+        public void CleanUp()
+        {
+            _assets.CleanUp();
+        }
 
         public async Task<GameObject> CreatePlayer(Vector3 at)
         {
