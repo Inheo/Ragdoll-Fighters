@@ -7,8 +7,6 @@ using CodeBase.StaticData;
 
 public class Level : MonoBehaviour
 {
-    [Inject] private IGameFactory _factory;
-
     private LevelStartButton _levelStartButton;
 
     private UnitDeath _player;
@@ -35,7 +33,6 @@ public class Level : MonoBehaviour
 
     private void Start()
     {
-        GetUnits();
         SubscribeEvents();
     }
 
@@ -44,25 +41,13 @@ public class Level : MonoBehaviour
         UnsubscribeEvents();
     }
 
-    private void GetUnits()
-    {
-        // _player = _factory.Player.GetComponentInChildren<UnitDeath>();
-        // _enemy = _factory.Enemy.GetComponentInChildren<UnitDeath>();
-    }
-
     private void SubscribeEvents()
     {
-        // _player.OnDeath += Fail;
-        // _enemy.OnDeath += Win;
-
         _levelStartButton.OnClick += StartLevel;
     }
 
     private void UnsubscribeEvents()
     {
-        // _player.OnDeath -= Fail;
-        // _enemy.OnDeath -= Win;
-
         _levelStartButton.OnClick -= StartLevel;
     }
 
