@@ -39,17 +39,22 @@ namespace CodeBase.Infrastructure.States
         {
             LevelStaticData levelData = LevelStaticData();
 
-            await InitPlayer(levelData);
-            await InitEnemy(levelData);
+            Unit player = (await CreatePlayer(levelData)).GetComponentInChildren<Unit>();
+            Unit enemy = (await CreateEnemy(levelData)).GetComponentInChildren<Unit>();
+            
+            InitUnit(player, enemy);
+            InitUnit(enemy, player);
         }
 
         private LevelStaticData LevelStaticData() =>
             _staticData.ForLevel(SceneManager.GetActiveScene().name);
 
-        private async Task InitEnemy(LevelStaticData levelData) =>
+        private async Task<GameObject> CreatePlayer(LevelStaticData levelData) =>
+            await _factory.CreatePlayer(levelData.PlayerPosition);
+
+        private async Task<GameObject> CreateEnemy(LevelStaticData levelData) =>
             await _factory.CreateEnemy(levelData.EnemyData.EnemyTypeId, levelData.EnemyData.Position);
 
-        private async Task InitPlayer(LevelStaticData levelData) =>
-            await _factory.CreatePlayer(levelData.PlayerPosition);
+        private void InitUnit(Unit he, Unit hisEnemy) => he.SetTarget(hisEnemy);
     }
 }

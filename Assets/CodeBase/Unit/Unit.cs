@@ -1,20 +1,27 @@
 using System;
 using UnityEngine;
-using Zenject;
 
 public abstract class Unit : MonoBehaviour, ITargetSetEmitter, ICanActionable
 {
-    [Inject] private Level _level;
-
     public event Action<Unit> OnSetTarget;
 
     protected TargetType FindTarget<TargetType>() where TargetType : Unit
     {
         var target = FindObjectOfType<TargetType>();
-        OnSetTarget?.Invoke(target);
+
+        if (target != null)
+            OnSetTarget?.Invoke(target);
 
         return target;
     }
 
-    public bool IsCanAction() => _level.IsLevelEnd == false;
+    public void SetTarget(Unit target)
+    {
+        if (target == null)
+            return;
+            
+        OnSetTarget?.Invoke(target);
+    }
+
+    public bool IsCanAction() => Level.Instance.IsLevelEnd == false;
 }
