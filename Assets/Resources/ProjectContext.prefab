@@ -76,3 +76,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _input: {fileID: 7568285146921462155, guid: 5d5af9eb953e84cf09b57482f71f978c, type: 3}
   _levelStartButton: {fileID: 4192293758487582519, guid: d9034b4164f6e4ec68e90acd16cb9be6, type: 3}
+  _panels: {fileID: 9136945584840590237, guid: c25f9281e57ae4b30a5e02955e812e52, type: 3}

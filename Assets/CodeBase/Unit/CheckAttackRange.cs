@@ -1,11 +1,31 @@
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(IAttack))]
-public class CheckAttackRange : MonoBehaviour
+public class CheckAttackRange : MonoBehaviour, ITargetSetHandler
 {
     public float Distance;
-    public Transform target;
     public IAttack Attack;
+    private Transform _target;
+
+    public ITargetSetEmitter TargetSetEmitter { get; private set; }
+
+    [Inject]
+    public void Construct(ITargetSetEmitter targetSetEmitter)
+    {
+        TargetSetEmitter = targetSetEmitter;
+        TargetSetEmitter.OnSetTarget += SetTarget;
+    }
+
+    private void OnDestroy()
+    {
+        TargetSetEmitter.OnSetTarget -= SetTarget;
+    }
+
+    public void SetTarget(Unit target)
+    {
+        _target = target.transform;
+    }
 
     private void Start()
     {
@@ -15,13 +35,9 @@ public class CheckAttackRange : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, target.position) <= Distance)
-        {
+        if (_target != null && Vector3.Distance(transform.position, _target.position) <= Distance)
             Attack.EnableAttack();
-        }
         else
-        {
             Attack.DisableAttack();
-        }
     }
 }

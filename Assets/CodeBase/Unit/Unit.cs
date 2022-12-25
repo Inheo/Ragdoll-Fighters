@@ -1,7 +1,8 @@
 using System;
+using CodeBase.Infrastructure.States;
 using UnityEngine;
 
-public abstract class Unit : MonoBehaviour, ITargetSetEmitter, ICanActionable
+public class Unit : MonoBehaviour, ITargetSetEmitter, ICanActionable
 {
     public event Action<Unit> OnSetTarget;
 
@@ -23,5 +24,5 @@ public abstract class Unit : MonoBehaviour, ITargetSetEmitter, ICanActionable
         OnSetTarget?.Invoke(target);
     }
 
-    public bool IsCanAction() => Level.Instance.IsLevelEnd == false;
+    public bool IsCanAction() => !GameStats.IsLevelEnd && GameStats.IsStartLevel;
 }

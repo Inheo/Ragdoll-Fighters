@@ -1,4 +1,4 @@
 public interface ICanActionable
 {
-    public bool IsCanAction();
+    bool IsCanAction();
 }

@@ -1,14 +1,20 @@
-using System.Collections.Generic;
+using System.Collections;
 using Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(CinemachineTargetGroup))]
 public class SetTargets : MonoBehaviour
-{
+{   
     private CinemachineTargetGroup _targetGroup;
 
     public void Start()
     {
+        StartCoroutine(SetTargetsFor());
+    }
+
+    public IEnumerator SetTargetsFor()
+    {
+        yield return new WaitForSeconds(1f);
         Unit[] units = FindObjectsOfType<Unit>();
 
         _targetGroup = GetComponent<CinemachineTargetGroup>();

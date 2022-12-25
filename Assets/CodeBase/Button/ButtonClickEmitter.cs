@@ -13,7 +13,7 @@ public abstract class ButtonClickEmitter : MonoBehaviour
         button.onClick.AddListener(Click);
     }
 
-    private void Click()
+    protected virtual void Click()
     {
         OnClick?.Invoke();
     }

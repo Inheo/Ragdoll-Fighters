@@ -4,6 +4,7 @@ using CodeBase.Infrastructure.Factory;
 using CodeBase.Service.PersistentProgress;
 using CodeBase.Service.SaveLoad;
 using CodeBase.Service.StaticData;
+using CodeBase.UI;
 
 namespace CodeBase.Infrastructure.States
 {
@@ -12,13 +13,19 @@ namespace CodeBase.Infrastructure.States
         private Dictionary<Type, IExitableState> _states;
         private IExitableState _activeState;
 
-        public GameStateMachine(SceneLoader loader, IPersistentProgressService progressService, ISaveLoadService saveLoadService, IGameFactory factory, IStaticDataService staticData)
+        public GameStateMachine(SceneLoader loader,
+                            IPersistentProgressService progressService,
+                            ISaveLoadService saveLoadService,
+                            IGameFactory factory,
+                            IStaticDataService staticData,
+                            LevelStartButton levelStartButton,
+                            Panels panels)
         {
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(LoadProgressState)] = new LoadProgressState(this, progressService, saveLoadService),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, loader, factory, staticData),
-                [typeof(GameLoopState)] = new GameLoopState()
+                [typeof(GameLoopState)] = new GameLoopState(this, levelStartButton, factory, panels)
             };
         }
 
