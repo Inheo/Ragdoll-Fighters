@@ -37,8 +37,6 @@ namespace CodeBase.Infrastructure.Factory
 
         public async Task<GameObject> CreateEnemy(EnemyTypeId enemyTypeId, Vector3 at)
         {
-            var level = _diContainer.Resolve<Level>();
-            Debug.Log((level == null));
             EnemyStaticData enemyData = _staticDataService.ForEnemy(enemyTypeId);
             GameObject prefab = await _assets.Load<GameObject>(enemyData.PrefabReference);
             GameObject enemy = _diContainer.InstantiatePrefab(prefab, at, Quaternion.identity, null);
