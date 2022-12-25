@@ -6,6 +6,6 @@ public class Enemy : Unit
 {
     private void Start()
     {
-        FindTarget<Player>();
+        // FindTarget<Player>();
     }
 }
