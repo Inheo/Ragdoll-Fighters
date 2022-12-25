@@ -21,7 +21,6 @@ public class UnitAttack : MonoBehaviour, IAttack
     {
         _animatorTransition = animatorTransition;
         _canActionable = canActionable;
-
         _owner = owner;
     }
 
