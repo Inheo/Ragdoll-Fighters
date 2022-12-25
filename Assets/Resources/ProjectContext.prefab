@@ -74,3 +74,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cb69d5ba0a8418ca2554eda019a8ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _input: {fileID: 7568285146921462155, guid: 5d5af9eb953e84cf09b57482f71f978c, type: 3}
+  _levelStartButton: {fileID: 4192293758487582519, guid: d9034b4164f6e4ec68e90acd16cb9be6, type: 3}
