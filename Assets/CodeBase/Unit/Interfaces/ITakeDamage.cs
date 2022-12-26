@@ -1,7 +1,10 @@
-public interface ITakeDamage
+using CodeBase.Unit;
+
+namespace CodeBase.Unit.Interfaces
 {
-    public Unit Owner { get; }
-    
-    
-    public void TakeDamage(float damage);
+    public interface ITakeDamage
+    {
+        Unit Owner { get; }
+        void TakeDamage(float damage);
+    }
 }

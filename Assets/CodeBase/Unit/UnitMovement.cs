@@ -1,48 +1,53 @@
+using CodeBase.Unit;
+using CodeBase.Unit.Interfaces;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(Rigidbody))]
-public class UnitMovement : MonoBehaviour
+namespace CodeBase.Unit
 {
-    public float Speed;
-
-    private Rigidbody _rigidbody;
-    [Inject] private AnimatorTransition _animatorTransition;
-    [Inject] private ICanActionable _canActionable;
-
-    private void Awake()
+    [RequireComponent(typeof(Rigidbody))]
+    public class UnitMovement : MonoBehaviour
     {
-        _rigidbody = GetComponent<Rigidbody>();
-    }
+        public float Speed;
 
-    protected virtual void Update()
-    {
-        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
-        
-        if(_canActionable.IsCanAction() == false)
-            Stop();
-    }
+        private Rigidbody _rigidbody;
+        [Inject] private AnimatorTransition _animatorTransition;
+        [Inject] private ICanActionable _canActionable;
 
-    protected void Move(Vector2 direction)
-    {
-        if (_canActionable.IsCanAction() == false)
-            return;
-
-        _rigidbody.velocity = Vector3.right * direction * Speed;
-
-        if (direction.x > 0)
+        private void Awake()
         {
-            _animatorTransition.RunForward();
+            _rigidbody = GetComponent<Rigidbody>();
         }
-        else if (direction.x < 0)
-        {
-            _animatorTransition.RunBack();
-        }
-    }
 
-    protected void Stop()
-    {
-        _rigidbody.velocity = Vector3.zero;
-        _animatorTransition.Idle();
+        protected virtual void Update()
+        {
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+
+            if (_canActionable.IsCanAction() == false)
+                Stop();
+        }
+
+        protected void Move(Vector2 direction)
+        {
+            if (_canActionable.IsCanAction() == false)
+                return;
+
+            _rigidbody.velocity = Vector3.right * direction * Speed;
+
+            if (direction.x > 0)
+            {
+                _animatorTransition.RunForward();
+            }
+            else if (direction.x < 0)
+            {
+                _animatorTransition.RunBack();
+            }
+        }
+
+        protected void Stop()
+        {
+            _rigidbody.velocity = Vector3.zero;
+            _animatorTransition.Idle();
+        }
     }
 }

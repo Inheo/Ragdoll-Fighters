@@ -1,9 +1,9 @@
+using CodeBase.UI;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.States;
 using CodeBase.Service.PersistentProgress;
 using CodeBase.Service.SaveLoad;
 using CodeBase.Service.StaticData;
-using CodeBase.UI;
 using UnityEngine;
 using Zenject;
 

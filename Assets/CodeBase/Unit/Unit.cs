@@ -1,28 +1,32 @@
 using System;
+using CodeBase.Unit.Interfaces;
 using CodeBase.Infrastructure.States;
 using UnityEngine;
 
-public class Unit : MonoBehaviour, ITargetSetEmitter, ICanActionable
+namespace CodeBase.Unit
 {
-    public event Action<Unit> OnSetTarget;
-
-    protected TargetType FindTarget<TargetType>() where TargetType : Unit
+    public class Unit : MonoBehaviour, ITargetSetEmitter, ICanActionable
     {
-        var target = FindObjectOfType<TargetType>();
+        public event Action<Unit> OnSetTarget;
 
-        if (target != null)
+        protected TargetType FindTarget<TargetType>() where TargetType : Unit
+        {
+            var target = FindObjectOfType<TargetType>();
+
+            if (target != null)
+                OnSetTarget?.Invoke(target);
+
+            return target;
+        }
+
+        public void SetTarget(Unit target)
+        {
+            if (target == null)
+                return;
+
             OnSetTarget?.Invoke(target);
+        }
 
-        return target;
+        public bool IsCanAction() => !GameStats.IsLevelEnd && GameStats.IsStartLevel;
     }
-
-    public void SetTarget(Unit target)
-    {
-        if (target == null)
-            return;
-            
-        OnSetTarget?.Invoke(target);
-    }
-
-    public bool IsCanAction() => !GameStats.IsLevelEnd && GameStats.IsStartLevel;
 }

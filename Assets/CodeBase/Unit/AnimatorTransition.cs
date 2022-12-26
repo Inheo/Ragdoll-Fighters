@@ -1,108 +1,111 @@
 using UnityEngine;
 
-public class AnimatorTransition
+namespace CodeBase.Unit
 {
-    private const string IDLE_PARAMETER = "Idle";
-    private const string RUN_FORWARD_PARAMETER = "run-forward";
-    private const string RUN_BACK_PARAMETER = "run-back";
-    private const string RIGHT_HOOK_PARAMETER = "right-hook";
-    private const string LEFT_HOOK_PARAMETER = "left-hook";
-    private const string RIGHT_KICK_PARAMETER = "right-kick";
-    private const string LEFT_KICK_PARAMETER = "left-kick";
-    private const string DEAD_PARAMETER = "dead";
-
-    private string _currentAnimation;
-
-    private readonly Animator _animator;
-
-    public AnimatorTransition(Animator animator)
+    public class AnimatorTransition
     {
-        _animator = animator;
-        _currentAnimation = IDLE_PARAMETER;
-    }
+        private const string IDLE_PARAMETER = "Idle";
+        private const string RUN_FORWARD_PARAMETER = "run-forward";
+        private const string RUN_BACK_PARAMETER = "run-back";
+        private const string RIGHT_HOOK_PARAMETER = "right-hook";
+        private const string LEFT_HOOK_PARAMETER = "left-hook";
+        private const string RIGHT_KICK_PARAMETER = "right-kick";
+        private const string LEFT_KICK_PARAMETER = "left-kick";
+        private const string DEAD_PARAMETER = "dead";
 
-    public void Idle()
-    {
-        TryFadeState(IDLE_PARAMETER, 0.1f);
-    }
+        private string _currentAnimation;
 
-    public void RunForward()
-    {
-        TryFadeState(RUN_FORWARD_PARAMETER, 0.1f);
-    }
+        private readonly Animator _animator;
 
-    public void RunBack()
-    {
-        TryFadeState(RUN_BACK_PARAMETER, 0.1f);
-    }
+        public AnimatorTransition(Animator animator)
+        {
+            _animator = animator;
+            _currentAnimation = IDLE_PARAMETER;
+        }
 
-    public void PlayRandomAttackState()
-    {
-        var randomIndex = Random.Range(0, 4);
+        public void Idle()
+        {
+            TryFadeState(IDLE_PARAMETER, 0.1f);
+        }
 
-        if (randomIndex == 0)
-            PlayRightHook();
-        else if (randomIndex == 1)
-            PlayLeftHook();
-        else if (randomIndex == 2)
-            PlayRightKick();
-        else if (randomIndex == 3)
-            PlayLeftKick();
-        else
-            Debug.Log("WTF???!!!");
-    }
+        public void RunForward()
+        {
+            TryFadeState(RUN_FORWARD_PARAMETER, 0.1f);
+        }
 
-    public void PlayRightHook()
-    {
-        AttackLayerEnable();
+        public void RunBack()
+        {
+            TryFadeState(RUN_BACK_PARAMETER, 0.1f);
+        }
 
-        TryFadeState(RIGHT_HOOK_PARAMETER, 0.05f, 1);
-    }
+        public void PlayRandomAttackState()
+        {
+            var randomIndex = Random.Range(0, 4);
 
-    public void PlayLeftHook()
-    {
-        AttackLayerEnable();
+            if (randomIndex == 0)
+                PlayRightHook();
+            else if (randomIndex == 1)
+                PlayLeftHook();
+            else if (randomIndex == 2)
+                PlayRightKick();
+            else if (randomIndex == 3)
+                PlayLeftKick();
+            else
+                Debug.Log("WTF???!!!");
+        }
 
-        TryFadeState(LEFT_HOOK_PARAMETER, 0.05f, 1);
-    }
+        public void PlayRightHook()
+        {
+            AttackLayerEnable();
 
-    public void PlayRightKick()
-    {
-        AttackLayerEnable();
+            TryFadeState(RIGHT_HOOK_PARAMETER, 0.05f, 1);
+        }
 
-        TryFadeState(RIGHT_KICK_PARAMETER, 0.05f, 1);
-    }
+        public void PlayLeftHook()
+        {
+            AttackLayerEnable();
 
-    public void PlayLeftKick()
-    {
-        AttackLayerEnable();
+            TryFadeState(LEFT_HOOK_PARAMETER, 0.05f, 1);
+        }
 
-        TryFadeState(LEFT_KICK_PARAMETER, 0.05f, 1);
-    }
+        public void PlayRightKick()
+        {
+            AttackLayerEnable();
 
-    public void PlayDead()
-    {
-        AttackLayerDisable();
+            TryFadeState(RIGHT_KICK_PARAMETER, 0.05f, 1);
+        }
 
-        TryFadeState(DEAD_PARAMETER, 0.05f);
-    }
+        public void PlayLeftKick()
+        {
+            AttackLayerEnable();
 
-    public void AttackLayerDisable()
-    {
-        _animator.SetLayerWeight(1, 0);
-    }
+            TryFadeState(LEFT_KICK_PARAMETER, 0.05f, 1);
+        }
 
-    public void AttackLayerEnable()
-    {
-        _animator.SetLayerWeight(1, 1);
-    }
+        public void PlayDead()
+        {
+            AttackLayerDisable();
 
-    private void TryFadeState(string stateName, float normalizedTransitionDuration, int layer = 0)
-    {
-        if (_currentAnimation == stateName)
-            return;
+            TryFadeState(DEAD_PARAMETER, 0.05f);
+        }
 
-        _currentAnimation = stateName;
-        _animator.CrossFade(stateName, normalizedTransitionDuration, layer);
+        public void AttackLayerDisable()
+        {
+            _animator.SetLayerWeight(1, 0);
+        }
+
+        public void AttackLayerEnable()
+        {
+            _animator.SetLayerWeight(1, 1);
+        }
+
+        private void TryFadeState(string stateName, float normalizedTransitionDuration, int layer = 0)
+        {
+            if (_currentAnimation == stateName)
+                return;
+
+            _currentAnimation = stateName;
+            _animator.CrossFade(stateName, normalizedTransitionDuration, layer);
+        }
     }
 }

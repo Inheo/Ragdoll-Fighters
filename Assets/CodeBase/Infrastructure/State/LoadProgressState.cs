@@ -1,6 +1,6 @@
 using CodeBase.Service.PersistentProgress;
 using CodeBase.Service.SaveLoad;
-using Scripts.Data;
+using CodeBase.Data;
 using UnityEngine;
 using Zenject;
 

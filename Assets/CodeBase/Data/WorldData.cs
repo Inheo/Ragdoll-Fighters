@@ -1,6 +1,6 @@
 using System;
 
-namespace Scripts.Data
+namespace CodeBase.Data
 {
     [Serializable]
     public class WorldData

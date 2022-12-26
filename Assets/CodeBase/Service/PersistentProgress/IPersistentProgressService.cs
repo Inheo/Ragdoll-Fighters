@@ -1,4 +1,4 @@
-using Scripts.Data;
+using CodeBase.Data;
 
 namespace CodeBase.Service.PersistentProgress
 {

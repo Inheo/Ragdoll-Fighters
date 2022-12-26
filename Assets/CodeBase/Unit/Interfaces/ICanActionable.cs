@@ -1,4 +1,7 @@
-public interface ICanActionable
+namespace CodeBase.Unit.Interfaces
 {
-    bool IsCanAction();
+    public interface ICanActionable
+    {
+        bool IsCanAction();
+    }
 }

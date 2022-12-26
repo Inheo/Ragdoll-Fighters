@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Scripts.Data
+namespace CodeBase.Data
 {
     public class PlayerProgress
     {

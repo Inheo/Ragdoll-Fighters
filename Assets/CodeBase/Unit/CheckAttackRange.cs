@@ -1,43 +1,48 @@
+using CodeBase.Unit.Interfaces;
+using CodeBase.Unit;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(IAttack))]
-public class CheckAttackRange : MonoBehaviour, ITargetSetHandler
+namespace CodeBase.Unit
 {
-    public float Distance;
-    public IAttack Attack;
-    private Transform _target;
-
-    public ITargetSetEmitter TargetSetEmitter { get; private set; }
-
-    [Inject]
-    public void Construct(ITargetSetEmitter targetSetEmitter)
+    [RequireComponent(typeof(IAttack))]
+    public class CheckAttackRange : MonoBehaviour, ITargetSetHandler
     {
-        TargetSetEmitter = targetSetEmitter;
-        TargetSetEmitter.OnSetTarget += SetTarget;
-    }
+        public float Distance;
+        public IAttack Attack;
+        private Transform _target;
 
-    private void OnDestroy()
-    {
-        TargetSetEmitter.OnSetTarget -= SetTarget;
-    }
+        public ITargetSetEmitter TargetSetEmitter { get; private set; }
 
-    public void SetTarget(Unit target)
-    {
-        _target = target.transform;
-    }
+        [Inject]
+        public void Construct(ITargetSetEmitter targetSetEmitter)
+        {
+            TargetSetEmitter = targetSetEmitter;
+            TargetSetEmitter.OnSetTarget += SetTarget;
+        }
 
-    private void Start()
-    {
-        Attack = Attack == null ? GetComponentInChildren<IAttack>() : Attack;
-        Attack.DisableAttack();
-    }
+        private void OnDestroy()
+        {
+            TargetSetEmitter.OnSetTarget -= SetTarget;
+        }
 
-    private void Update()
-    {
-        if (_target != null && Vector3.Distance(transform.position, _target.position) <= Distance)
-            Attack.EnableAttack();
-        else
+        public void SetTarget(Unit target)
+        {
+            _target = target.transform;
+        }
+
+        private void Start()
+        {
+            Attack = Attack == null ? GetComponentInChildren<IAttack>() : Attack;
             Attack.DisableAttack();
+        }
+
+        private void Update()
+        {
+            if (_target != null && Vector3.Distance(transform.position, _target.position) <= Distance)
+                Attack.EnableAttack();
+            else
+                Attack.DisableAttack();
+        }
     }
 }

@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class AttackAnimationEventHandler : MonoBehaviour
+namespace CodeBase.Unit
 {
-    [SerializeField] private UnitAttack _attack;
-
-    public void AttackPlayEnded()
+    public class AttackAnimationEventHandler : MonoBehaviour
     {
-        _attack.AttackPlayEnded();
+        [SerializeField] private UnitAttack _attack;
+
+        public void AttackPlayEnded()
+        {
+            _attack.AttackPlayEnded();
+        }
     }
 }

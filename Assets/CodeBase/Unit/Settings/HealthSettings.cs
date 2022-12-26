@@ -1,22 +1,25 @@
 using UnityEngine;
 
-[System.Serializable]
-public struct HealthSettings
+namespace CodeBase.Unit.Settings
 {
-    [SerializeField] private float _health;
-    [HideInInspector] public float CurrentHealth;
-
-    public float StartHealth => _health;
-
-    public void Initialize()
+    [System.Serializable]
+    public struct HealthSettings
     {
-        CurrentHealth = _health;
-    }
+        [SerializeField] private float _health;
+        [HideInInspector] public float CurrentHealth;
 
-    public HealthSettings(float health)
-    {
-        _health = health;
-        CurrentHealth = health;
-        Debug.Log($"{health}");
+        public float StartHealth => _health;
+
+        public void Initialize()
+        {
+            CurrentHealth = _health;
+        }
+
+        public HealthSettings(float health)
+        {
+            _health = health;
+            CurrentHealth = health;
+            Debug.Log($"{health}");
+        }
     }
 }

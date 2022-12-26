@@ -1,6 +1,10 @@
-public interface ITargetSetHandler
-{
-    public ITargetSetEmitter TargetSetEmitter { get; }
+using CodeBase.Unit;
 
-    void SetTarget(Unit target);
+namespace CodeBase.Unit.Interfaces
+{
+    public interface ITargetSetHandler
+    {
+        ITargetSetEmitter TargetSetEmitter { get; }
+        void SetTarget(Unit target);
+    }
 }

@@ -1,32 +1,36 @@
 using System;
+using CodeBase.Unit.Interface;
 using UnityEngine;
 
-[RequireComponent(typeof(IHealth))]
-public class UnitDeath : MonoBehaviour
+namespace CodeBase.Unit
 {
-    [SerializeField] private UnitHealth _health;
-
-    public event Action OnDeath; 
-
-    private void Start()
+    [RequireComponent(typeof(IHealth))]
+    public class UnitDeath : MonoBehaviour
     {
-        _health.OnHealthChanged += HealthChanged;
-    }
+        [SerializeField] private UnitHealth _health;
 
-    private void OnDestroy()
-    {
-        _health.OnHealthChanged -= HealthChanged;
-    }
+        public event Action OnDeath;
 
-    private void HealthChanged()
-    {
-        if (_health.Current <= 0) 
-            Die();
-    }
+        private void Start()
+        {
+            _health.OnHealthChanged += HealthChanged;
+        }
 
-    private void Die()
-    {
-        _health.OnHealthChanged -= HealthChanged;
-        OnDeath?.Invoke();
+        private void OnDestroy()
+        {
+            _health.OnHealthChanged -= HealthChanged;
+        }
+
+        private void HealthChanged()
+        {
+            if (_health.Current <= 0)
+                Die();
+        }
+
+        private void Die()
+        {
+            _health.OnHealthChanged -= HealthChanged;
+            OnDeath?.Invoke();
+        }
     }
 }

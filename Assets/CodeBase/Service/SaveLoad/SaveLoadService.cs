@@ -1,5 +1,5 @@
 using CodeBase.Service.PersistentProgress;
-using Scripts.Data;
+using CodeBase.Data;
 using UnityEngine;
 using Zenject;
 

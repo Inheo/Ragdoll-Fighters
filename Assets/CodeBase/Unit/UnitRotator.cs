@@ -1,35 +1,40 @@
+using CodeBase.Unit.Interfaces;
+using CodeBase.Unit;
 using UnityEngine;
 using Zenject;
 
-public class UnitRotator : MonoBehaviour, ITargetSetHandler
+namespace CodeBase.Unit
 {
-    protected Unit _target;
-
-    private ICanActionable _canActionable;
-
-    public ITargetSetEmitter TargetSetEmitter { get; private set; }
-
-    [Inject]
-    public void Construct(ICanActionable canActionable, ITargetSetEmitter targetSetEmitter)
+    public class UnitRotator : MonoBehaviour, ITargetSetHandler
     {
-        _canActionable = canActionable;
+        protected Unit _target;
 
-        TargetSetEmitter = targetSetEmitter;
-        TargetSetEmitter.OnSetTarget += SetTarget;
-    }
+        private ICanActionable _canActionable;
 
-    public void SetTarget(Unit target)
-    {
-        _target = target;
-    }
+        public ITargetSetEmitter TargetSetEmitter { get; private set; }
 
-    private void Update()
-    {
-        if (_canActionable.IsCanAction() == false)
-            return;
+        [Inject]
+        public void Construct(ICanActionable canActionable, ITargetSetEmitter targetSetEmitter)
+        {
+            _canActionable = canActionable;
 
-        Vector3 direction = _target.transform.position - transform.position;
-        direction.y = 0;
-        transform.rotation = Quaternion.LookRotation(direction);
+            TargetSetEmitter = targetSetEmitter;
+            TargetSetEmitter.OnSetTarget += SetTarget;
+        }
+
+        public void SetTarget(Unit target)
+        {
+            _target = target;
+        }
+
+        private void Update()
+        {
+            if (_canActionable.IsCanAction() == false)
+                return;
+
+            Vector3 direction = _target.transform.position - transform.position;
+            direction.y = 0;
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
     }
 }

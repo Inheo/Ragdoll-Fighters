@@ -1,50 +1,55 @@
+using CodeBase.Unit.Interfaces;
+using CodeBase.Unit;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(ConfigurableJoint))]
-public class PhysicRotationTo : MonoBehaviour, ITargetSetHandler
+namespace CodeBase.Unit
 {
-    private Transform _target;
-
-    private ConfigurableJoint _pelvisJoint;
-    private ICanActionable _canActionable;
-
-    private Quaternion _startRotation;
-
-    public ITargetSetEmitter TargetSetEmitter { get; private set; }
-
-    [Inject]
-    public void Construct(ICanActionable canActionable, ITargetSetEmitter targetSetEmitter)
+    [RequireComponent(typeof(ConfigurableJoint))]
+    public class PhysicRotationTo : MonoBehaviour, ITargetSetHandler
     {
-        _canActionable = canActionable;
+        private Transform _target;
 
-        TargetSetEmitter = targetSetEmitter;
-        TargetSetEmitter.OnSetTarget += SetTarget;
-    }
+        private ConfigurableJoint _pelvisJoint;
+        private ICanActionable _canActionable;
 
-    private void Awake()
-    {
-        _startRotation = transform.rotation;
-        _pelvisJoint = GetComponent<ConfigurableJoint>();
-    }
+        private Quaternion _startRotation;
 
-    private void OnDestroy()
-    {
-        TargetSetEmitter.OnSetTarget -= SetTarget;
-    }
+        public ITargetSetEmitter TargetSetEmitter { get; private set; }
 
-    private void FixedUpdate()
-    {
-        if (_canActionable.IsCanAction() == false)
-            return;
-            
-        Vector3 direction = _target.position - transform.position;
-        direction.y = 0;
-        _pelvisJoint.targetRotation = Quaternion.Inverse(Quaternion.LookRotation(direction)) * _startRotation;
-    }
+        [Inject]
+        public void Construct(ICanActionable canActionable, ITargetSetEmitter targetSetEmitter)
+        {
+            _canActionable = canActionable;
 
-    public void SetTarget(Unit target)
-    {
-        _target = target.transform;
+            TargetSetEmitter = targetSetEmitter;
+            TargetSetEmitter.OnSetTarget += SetTarget;
+        }
+
+        private void Awake()
+        {
+            _startRotation = transform.rotation;
+            _pelvisJoint = GetComponent<ConfigurableJoint>();
+        }
+
+        private void OnDestroy()
+        {
+            TargetSetEmitter.OnSetTarget -= SetTarget;
+        }
+
+        private void FixedUpdate()
+        {
+            if (_canActionable.IsCanAction() == false)
+                return;
+
+            Vector3 direction = _target.position - transform.position;
+            direction.y = 0;
+            _pelvisJoint.targetRotation = Quaternion.Inverse(Quaternion.LookRotation(direction)) * _startRotation;
+        }
+
+        public void SetTarget(Unit target)
+        {
+            _target = target.transform;
+        }
     }
 }

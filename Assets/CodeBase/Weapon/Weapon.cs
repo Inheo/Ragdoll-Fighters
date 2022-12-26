@@ -1,36 +1,41 @@
+using CodeBase.Unit.Interfaces;
 using UnityEngine;
+using UnitBase = CodeBase.Unit.Unit;
 
-public class Weapon : MonoBehaviour
+namespace CodeBase.Weapon
 {
-    [SerializeField] private float _damage = 1f;
-
-    private Unit _owner;
-
-    private bool _isActive = false;
-
-    public float Damage => _damage;
-
-    public void Initialize(Unit owner)
+    public class Weapon : MonoBehaviour
     {
-        _owner = owner;
-    }
+        [SerializeField] private float _damage = 1f;
 
-    public void Active()
-    {
-        _isActive = true;
-    }
+        private UnitBase _owner;
 
-    public void Deactive()
-    {
-        _isActive = false;
-    }
+        private bool _isActive = false;
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (_isActive == true && other.rigidbody != null && other.rigidbody.TryGetComponent(out ITakeDamage takeDamage) && _owner != takeDamage.Owner)
+        public float Damage => _damage;
+
+        public void Initialize(UnitBase owner)
         {
-            Deactive();
-            takeDamage.TakeDamage(_damage);
+            _owner = owner;
+        }
+
+        public void Active()
+        {
+            _isActive = true;
+        }
+
+        public void Deactive()
+        {
+            _isActive = false;
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (_isActive == true && other.rigidbody != null && other.rigidbody.TryGetComponent(out ITakeDamage takeDamage) && _owner != takeDamage.Owner)
+            {
+                Deactive();
+                takeDamage.TakeDamage(_damage);
+            }
         }
     }
 }

@@ -1,4 +1,9 @@
-public interface ITargetSetEmitter
+using CodeBase.Unit;
+
+namespace CodeBase.Unit.Interfaces
 {
-    public event System.Action<Unit> OnSetTarget;
+    public interface ITargetSetEmitter
+    {
+        event System.Action<Unit> OnSetTarget;
+    }
 }

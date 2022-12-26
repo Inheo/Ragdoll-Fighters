@@ -1,55 +1,58 @@
 using UnityEngine;
 using DG.Tweening;
 
-[RequireComponent(typeof(CanvasGroup))]
-public class FadePanel : MonoBehaviour
+namespace CodeBase.UI
 {
-    [SerializeField] private float _animationDuration = 0.2f;
-
-    private CanvasGroup _canvasGroup;
-
-    private void Awake()
+    [RequireComponent(typeof(CanvasGroup))]
+    public class FadePanel : MonoBehaviour
     {
-        _canvasGroup = GetComponent<CanvasGroup>();
-    }
+        [SerializeField] private float _animationDuration = 0.2f;
 
-    public void Show(bool isInstantAnimation = false)
-    {
-        if(isInstantAnimation == true)
+        private CanvasGroup _canvasGroup;
+
+        private void Awake()
         {
-            _canvasGroup.alpha = 1;
-            Active();
+            _canvasGroup = GetComponent<CanvasGroup>();
         }
 
-        _canvasGroup.DOFade(1, _animationDuration)
-        .OnComplete(() =>
+        public void Show(bool isInstantAnimation = false)
         {
-            Active();
-        });
-    }
+            if (isInstantAnimation == true)
+            {
+                _canvasGroup.alpha = 1;
+                Active();
+            }
 
-    public void Hide(bool isInstantAnimation = false)
-    {
-        if(isInstantAnimation == true)
-        {
-            _canvasGroup.alpha = 0;
-            Deactive();
+            _canvasGroup.DOFade(1, _animationDuration)
+            .OnComplete(() =>
+            {
+                Active();
+            });
         }
-        _canvasGroup.DOFade(0, _animationDuration)
-        .OnStart(() =>
-        {
-            Deactive();
-        });
-    }
 
-    private void Active()
-    {
-        _canvasGroup.interactable = true;
-        _canvasGroup.blocksRaycasts = true;
-    }
-    private void Deactive()
-    {
-        _canvasGroup.interactable = false;
-        _canvasGroup.blocksRaycasts = false;
+        public void Hide(bool isInstantAnimation = false)
+        {
+            if (isInstantAnimation == true)
+            {
+                _canvasGroup.alpha = 0;
+                Deactive();
+            }
+            _canvasGroup.DOFade(0, _animationDuration)
+            .OnStart(() =>
+            {
+                Deactive();
+            });
+        }
+
+        private void Active()
+        {
+            _canvasGroup.interactable = true;
+            _canvasGroup.blocksRaycasts = true;
+        }
+        private void Deactive()
+        {
+            _canvasGroup.interactable = false;
+            _canvasGroup.blocksRaycasts = false;
+        }
     }
 }

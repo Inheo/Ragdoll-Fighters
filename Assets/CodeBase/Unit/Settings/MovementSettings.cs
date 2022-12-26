@@ -1,14 +1,17 @@
 using UnityEngine;
 
-[System.Serializable]
-public class MovementSettings
+namespace CodeBase.Unit.Settings
 {
-    [SerializeField] private float _speed;
-
-    public float Speed => _speed;
-
-    public MovementSettings(float speed)
+    [System.Serializable]
+    public class MovementSettings
     {
-        _speed = speed;
+        [SerializeField] private float _speed;
+
+        public float Speed => _speed;
+
+        public MovementSettings(float speed)
+        {
+            _speed = speed;
+        }
     }
 }

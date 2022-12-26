@@ -4,6 +4,7 @@ using CodeBase.Service.StaticData;
 using CodeBase.StaticData;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnitBase = CodeBase.Unit.Unit;
 
 namespace CodeBase.Infrastructure.States
 {
@@ -39,8 +40,8 @@ namespace CodeBase.Infrastructure.States
         {
             LevelStaticData levelData = LevelStaticData();
 
-            Unit player = (await CreatePlayer(levelData)).GetComponentInChildren<Unit>();
-            Unit enemy = (await CreateEnemy(levelData)).GetComponentInChildren<Unit>();
+            UnitBase player = (await CreatePlayer(levelData)).GetComponentInChildren<UnitBase>();
+            UnitBase enemy = (await CreateEnemy(levelData)).GetComponentInChildren<UnitBase>();
             
             InitUnit(player, enemy);
             InitUnit(enemy, player);
@@ -55,6 +56,6 @@ namespace CodeBase.Infrastructure.States
         private async Task<GameObject> CreateEnemy(LevelStaticData levelData) =>
             await _factory.CreateEnemy(levelData.EnemyData.EnemyTypeId, levelData.EnemyData.Position);
 
-        private void InitUnit(Unit he, Unit hisEnemy) => he.SetTarget(hisEnemy);
+        private void InitUnit(UnitBase he, UnitBase hisEnemy) => he.SetTarget(hisEnemy);
     }
 }

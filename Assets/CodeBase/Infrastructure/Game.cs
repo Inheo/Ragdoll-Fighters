@@ -4,7 +4,6 @@ using CodeBase.Service.PersistentProgress;
 using CodeBase.Service.SaveLoad;
 using CodeBase.Service.StaticData;
 using CodeBase.UI;
-using Zenject;
 
 namespace CodeBase.Infrastructure
 {

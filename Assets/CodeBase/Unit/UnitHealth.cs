@@ -1,29 +1,33 @@
 using System;
+using CodeBase.Unit.Interface;
 using UnityEngine;
 
-public class UnitHealth : MonoBehaviour, IHealth
+namespace CodeBase.Unit
 {
-    private float _current;
-    private float _max;
-
-    public float Current
+    public class UnitHealth : MonoBehaviour, IHealth
     {
-        get => _current;
-        set => _current = value;
-    }
-    public float Max
-    {
-        get => _max;
-        set => _max = value;
-    }
+        private float _current;
+        private float _max;
 
-    public Unit Owner => null;
+        public float Current
+        {
+            get => _current;
+            set => _current = value;
+        }
+        public float Max
+        {
+            get => _max;
+            set => _max = value;
+        }
 
-    public event Action OnHealthChanged;
+        public Unit Owner => null;
 
-    public void TakeDamage(float damage)
-    {
-        Current -= damage;
-        OnHealthChanged?.Invoke();
+        public event Action OnHealthChanged;
+
+        public void TakeDamage(float damage)
+        {
+            Current -= damage;
+            OnHealthChanged?.Invoke();
+        }
     }
 }
