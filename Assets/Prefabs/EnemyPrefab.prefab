@@ -103,6 +103,10 @@ PrefabInstance:
       propertyPath: _unit
       value: 
       objectReference: {fileID: 3591311020350545254}
+    - target: {fileID: 4000415737064076156, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
+      propertyPath: _owner
+      value: 
+      objectReference: {fileID: 3591311020350545254}
     - target: {fileID: 4693900368351331562, guid: 877d146f45fcd4faf94e88211cb0a89c, type: 3}
       propertyPath: _components.Array.size
       value: 1
@@ -249,6 +253,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829b39c3192744eabbb9ca56a7c21442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4031173376880703277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7277517568549124317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c9a983ff3b04053891c0e9387f1142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Distance: 0
+  target: {fileID: 0}
 --- !u!114 &4886095324248153859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ad5a8823f974709ac25bd6cc773a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 0
   _stopDistance: 2
 --- !u!114 &7381879784160267194
 MonoBehaviour:
