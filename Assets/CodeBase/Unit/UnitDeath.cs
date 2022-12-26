@@ -1,11 +1,10 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(IHealth))]
 public class UnitDeath : MonoBehaviour
 {
-    [SerializeField] private UnitHealth _health;
+    [SerializeField] private UnitHealth _health;
 
     public event Action OnDeath; 
 

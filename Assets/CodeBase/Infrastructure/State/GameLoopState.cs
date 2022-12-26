@@ -27,11 +27,26 @@ namespace CodeBase.Infrastructure.States
 
         public void Enter()
         {
-            GameStats.IsStartLevel = false;
-            GameStats.IsLevelEnd = false;
+            CleanUp();
+
+            _factory.Player.GetComponentInChildren<UnitDeath>().OnDeath += Fail;
+            _factory.Enemy.GetComponentInChildren<UnitDeath>().OnDeath += Win;
         }
 
-        public void Exit() { }
+        public void Exit()
+        {
+            _factory.CleanUp();
+            _factory.Player.GetComponentInChildren<UnitDeath>().OnDeath -= Fail;
+            _factory.Enemy.GetComponentInChildren<UnitDeath>().OnDeath -= Win;
+        }
+
+        private void CleanUp()
+        {
+            GameStats.IsStartLevel = false;
+            GameStats.IsLevelEnd = false;
+            _panels.FastHideAll();
+            _levelStartButton.transform.parent.gameObject.SetActive(true);
+        }
 
         private void Win()
         {

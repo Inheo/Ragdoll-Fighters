@@ -27,6 +27,8 @@ namespace CodeBase.Infrastructure.Factory
         public void CleanUp()
         {
             _assets.CleanUp();
+            Object.Destroy(Player);
+            Object.Destroy(Enemy);
         }
 
         public async Task<GameObject> CreatePlayer(Vector3 at)
