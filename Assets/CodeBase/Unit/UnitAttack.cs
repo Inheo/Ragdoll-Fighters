@@ -28,7 +28,7 @@ namespace CodeBase.Unit
             _owner = owner;
         }
 
-        private void Start()
+        private void Awake()
         {
             GetWeapons();
             WeaponsInitialize();
@@ -44,7 +44,7 @@ namespace CodeBase.Unit
 
         private void StartAttack()
         {
-            _attackCooldown = 0;
+            _attackCooldown = AttackCooldown;
             _animatorTransition.PlayRandomAttackState();
             ActiveWeapons();
         }
@@ -58,8 +58,10 @@ namespace CodeBase.Unit
         public void EnableAttack() =>
             _attackIsActive = true;
 
-        public void DisableAttack() =>
-            _attackIsActive = false;
+        public void DisableAttack() 
+        {
+            DeactiveWeapons();
+        }
 
         private void WeaponsInitialize()
         {
