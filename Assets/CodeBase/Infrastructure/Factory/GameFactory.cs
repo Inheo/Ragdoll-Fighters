@@ -26,7 +26,7 @@ namespace CodeBase.Infrastructure.Factory
             _staticDataService = staticDataService;
             _diContainer = diContainer;
         }
-        
+
         public void CleanUp()
         {
             _assets.CleanUp();
@@ -37,6 +37,17 @@ namespace CodeBase.Infrastructure.Factory
         public async Task<GameObject> CreatePlayer(Vector3 at)
         {
             Player = await Instantiate(AssetAddress.PLAYER_PATH, at);
+            IHealth health = Player.GetComponentInChildren<IHealth>();
+            health.Max = 25;
+            health.Current = 25;
+
+            IAttack attack = Player.GetComponentInChildren<IAttack>();
+            attack.Damage = 2;
+            attack.AttackCooldown = 0.6f;
+
+            CheckAttackRange attackRange = Player.GetComponentInChildren<CheckAttackRange>();
+            attackRange.Distance = 2;
+            attackRange.Attack = attack;
             return Player;
         }
 
